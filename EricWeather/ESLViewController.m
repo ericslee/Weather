@@ -33,20 +33,6 @@
     return _mainModel;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    /*
-    CAGradientLayer *bgLayer = [ESLBackgroundLayer blueGradient];
-    bgLayer.frame = self.view.bounds;
-    //bgLayer.frame = self.view.
-    [self.view.layer insertSublayer:bgLayer atIndex:0];
-    */
-    
-    //[super viewWillAppear:animated];
-    
-    
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [CATransaction begin];
@@ -110,7 +96,11 @@
 - (void)refreshTable:(UIRefreshControl *)refreshControl
 {
     // get new JSON table to pull from
-    _mainModel = [[ESLWeatherDataManager alloc] initDefault];
+    //_mainModel = [[ESLWeatherDataManager alloc] initDefault];
+    
+    // store the cities to refresh
+    self.tempCities = [[NSMutableArray alloc] initWithArray:self.mainModel.zipCodesArray];
+    _mainModel = [[ESLWeatherDataManager alloc] initRefreshData:self.tempCities];
     
     //TODO: specific initializer for refreshing
     

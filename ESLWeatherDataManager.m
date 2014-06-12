@@ -21,6 +21,7 @@
     
     // init mutable arrays
     self.citiesArray = [[NSMutableArray alloc] init];
+    self.zipCodesArray = [[NSMutableArray alloc] init];
     
     // init other data dictionaries
     self.conditionsDictionary = [[NSMutableDictionary alloc] init];
@@ -47,6 +48,46 @@
     return self;
 }
 
+- (id)initRefreshData:(NSMutableArray *)citiesToReload
+{
+    // cache the cities list
+    //NSMutableArray *tempCities = [[NSMutableArray alloc] initWithArray:self.citiesArray];
+    
+    NSLog(@"Temp cities count: %@", citiesToReload);
+    
+    self = [super init];
+    
+    // init dictionary
+    _weatherDataDictionary = [[NSMutableDictionary alloc] init];
+    
+    // reset mutable array
+    self.citiesArray = [[NSMutableArray alloc] init];
+    self.zipCodesArray = [[NSMutableArray alloc] init];
+    
+    // reset other data dictionaries
+    self.conditionsDictionary = [[NSMutableDictionary alloc] init];
+    self.temperatureStringDictionary = [[NSMutableDictionary alloc] init];
+    self.iconDictionary = [[NSMutableDictionary alloc] init];
+    self.windStringDictionary = [[NSMutableDictionary alloc] init];
+    self.humidityStringDictionary = [[NSMutableDictionary alloc] init];
+    self.feelsLikeStringDictionary = [[NSMutableDictionary alloc] init];
+    self.weatherEffectsDictionary = [[NSMutableDictionary alloc] init];
+    
+    // add all cities again with updated data
+    for(NSString *city in citiesToReload)
+    {
+        NSString *newCity = city;
+        NSString *httpRequestURL = @"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/";
+        httpRequestURL = [httpRequestURL stringByAppendingString:newCity];
+        NSString *jsonTag = @".json";
+        httpRequestURL = [httpRequestURL stringByAppendingString:jsonTag];
+        
+        [self addCityToModel:httpRequestURL];
+    }
+    
+    return self;
+}
+
 - (void)addCityToModel:(NSString *)cityURL
 {
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:
@@ -62,8 +103,12 @@
 
 - (void)removeCityFromModel:(NSString *)cityToRemove
 {
+    // get index of city
+    NSInteger cityIndex = [self.citiesArray indexOfObject:cityToRemove];
     // remove city from array
     [self.citiesArray removeObject:cityToRemove];
+    // remove zip code
+    [self.zipCodesArray removeObjectAtIndex:cityIndex];
     
     NSLog(@"size of cities array: %ld", [self.citiesArray count]);
     
@@ -142,6 +187,9 @@
         
         // Store the city
         [self.citiesArray addObject:city];
+                
+        // Store the zip
+        [self.zipCodesArray addObject:[[parsedJson valueForKey:@"display_location"] valueForKey:@"zip"]];
         
         // Store the weather condition
         [self.conditionsDictionary setObject:[parsedJson valueForKey:@"weather"] forKey:city];

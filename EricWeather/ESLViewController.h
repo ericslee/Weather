@@ -23,5 +23,6 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableData *responseData;
+@property (nonatomic, strong) NSMutableArray *tempCities;
 
 @end

@@ -12,6 +12,7 @@
 @interface ESLWeatherDataManager : NSObject
 
 - (id)initDefault; // default initializer that loads S.F. data
+- (id)initRefreshData:(NSMutableArray *)citiesToReload; // refreshes data for all cities added
 - (void)addCityToModel:(NSString *)cityURL; // add city to model
 - (void)removeCityFromModel:(NSString *)cityToRemove; // remove swiped city from model
 
@@ -22,6 +23,7 @@
 
 // stores all cities in list to maintain ordering
 @property (nonatomic, strong) NSMutableArray *citiesArray;
+@property (nonatomic, strong) NSMutableArray *zipCodesArray;
 
 // store all other properties in dictionary
 @property (nonatomic, strong) NSMutableDictionary *conditionsDictionary; // weather conditions
