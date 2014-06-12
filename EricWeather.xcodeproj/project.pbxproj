@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		488C370F19476CFF00F5BE9C /* ESLBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */; };
+		488C37111947732100F5BE9C /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488C37101947732100F5BE9C /* SpriteKit.framework */; };
+		488C37141947736F00F5BE9C /* RainEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 488C37121947736F00F5BE9C /* RainEffect.sks */; };
+		488C37151947736F00F5BE9C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 488C37131947736F00F5BE9C /* spark.png */; };
+		488C37181947743700F5BE9C /* ESLDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 488C37171947743700F5BE9C /* ESLDetailsViewController.m */; };
+		488C371B19477C3D00F5BE9C /* ESLWeatherEffectsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 488C371A19477C3D00F5BE9C /* ESLWeatherEffectsScene.m */; };
+		488C371E19477EFB00F5BE9C /* Cloudy.sks in Resources */ = {isa = PBXBuildFile; fileRef = 488C371C19477EFB00F5BE9C /* Cloudy.sks */; };
+		488C371F19477EFB00F5BE9C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 488C371D19477EFB00F5BE9C /* spark.png */; };
+		48B124211942316100835400 /* ESLWebRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B124201942316100835400 /* ESLWebRequestManager.m */; };
+		48B12424194231CE00835400 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B12423194231CE00835400 /* Reachability.m */; };
+		48B124271942321400835400 /* ESLWeatherDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B124261942321400835400 /* ESLWeatherDataManager.m */; };
+		48B1242C19425E6C00835400 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B1242B19425E6C00835400 /* QuartzCore.framework */; };
+		48B1242E19425E7300835400 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B1242D19425E7300835400 /* CoreLocation.framework */; };
+		48B1243019425ECB00835400 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B1242F19425ECB00835400 /* MobileCoreServices.framework */; };
+		48B1243219425ED600835400 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B1243119425ED600835400 /* SystemConfiguration.framework */; };
+		48C314CC1947B6AD007B049E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C314CB1947B6AD007B049E /* MBProgressHUD.m */; };
+		48C314CF1949034F007B049E /* raindrop.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314CE1949034F007B049E /* raindrop.png */; };
+		48C314D1194912D2007B049E /* Cloud01.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314D0194912D2007B049E /* Cloud01.png */; };
+		48C314D3194917FF007B049E /* Cloud02.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314D2194917FF007B049E /* Cloud02.png */; };
+		48C314D519491B4A007B049E /* Cloud03.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314D419491B4A007B049E /* Cloud03.png */; };
 		48EAC2191941380C00B0A30A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC2181941380C00B0A30A /* Foundation.framework */; };
 		48EAC21B1941380C00B0A30A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC21A1941380C00B0A30A /* CoreGraphics.framework */; };
 		48EAC21D1941380C00B0A30A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC21C1941380C00B0A30A /* UIKit.framework */; };
@@ -22,6 +42,7 @@
 		48EAC23D1941380C00B0A30A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC21C1941380C00B0A30A /* UIKit.framework */; };
 		48EAC2451941380C00B0A30A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48EAC2431941380C00B0A30A /* InfoPlist.strings */; };
 		48EAC2471941380C00B0A30A /* EricWeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EAC2461941380C00B0A30A /* EricWeatherTests.m */; };
+		D4AA768BF3584DE0B874DFA1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC9A7F56C784C1AB7DA275B /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +56,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3FC9A7F56C784C1AB7DA275B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		437C599E6B924FDF8379B922 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		488C370D19476CFF00F5BE9C /* ESLBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLBackgroundLayer.h; path = ../ESLBackgroundLayer.h; sourceTree = "<group>"; };
+		488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESLBackgroundLayer.m; path = ../ESLBackgroundLayer.m; sourceTree = "<group>"; };
+		488C37101947732100F5BE9C /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		488C37121947736F00F5BE9C /* RainEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RainEffect.sks; sourceTree = "<group>"; };
+		488C37131947736F00F5BE9C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		488C37161947743700F5BE9C /* ESLDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESLDetailsViewController.h; sourceTree = "<group>"; };
+		488C37171947743700F5BE9C /* ESLDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLDetailsViewController.m; sourceTree = "<group>"; };
+		488C371919477C3D00F5BE9C /* ESLWeatherEffectsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESLWeatherEffectsScene.h; sourceTree = "<group>"; };
+		488C371A19477C3D00F5BE9C /* ESLWeatherEffectsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLWeatherEffectsScene.m; sourceTree = "<group>"; };
+		488C371C19477EFB00F5BE9C /* Cloudy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Cloudy.sks; path = ../Cloudy.sks; sourceTree = "<group>"; };
+		488C371D19477EFB00F5BE9C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../spark.png; sourceTree = "<group>"; };
+		48B1241F1942316100835400 /* ESLWebRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESLWebRequestManager.h; sourceTree = "<group>"; };
+		48B124201942316100835400 /* ESLWebRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLWebRequestManager.m; sourceTree = "<group>"; };
+		48B12422194231CE00835400 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = EricWeather/Reachability.h; sourceTree = "<group>"; };
+		48B12423194231CE00835400 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = EricWeather/Reachability.m; sourceTree = "<group>"; };
+		48B124251942321400835400 /* ESLWeatherDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLWeatherDataManager.h; path = ../ESLWeatherDataManager.h; sourceTree = "<group>"; };
+		48B124261942321400835400 /* ESLWeatherDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESLWeatherDataManager.m; path = ../ESLWeatherDataManager.m; sourceTree = "<group>"; };
+		48B1242B19425E6C00835400 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		48B1242D19425E7300835400 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		48B1242F19425ECB00835400 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		48B1243119425ED600835400 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		48C314CA1947B6AD007B049E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = EricWeather/MBProgressHUD.h; sourceTree = "<group>"; };
+		48C314CB1947B6AD007B049E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = EricWeather/MBProgressHUD.m; sourceTree = "<group>"; };
+		48C314CE1949034F007B049E /* raindrop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = raindrop.png; sourceTree = "<group>"; };
+		48C314D0194912D2007B049E /* Cloud01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud01.png; sourceTree = "<group>"; };
+		48C314D2194917FF007B049E /* Cloud02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud02.png; sourceTree = "<group>"; };
+		48C314D419491B4A007B049E /* Cloud03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud03.png; sourceTree = "<group>"; };
 		48EAC2151941380C00B0A30A /* EricWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EricWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EAC2181941380C00B0A30A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		48EAC21A1941380C00B0A30A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,9 +112,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				488C37111947732100F5BE9C /* SpriteKit.framework in Frameworks */,
+				48B1243219425ED600835400 /* SystemConfiguration.framework in Frameworks */,
+				48B1243019425ECB00835400 /* MobileCoreServices.framework in Frameworks */,
+				48B1242E19425E7300835400 /* CoreLocation.framework in Frameworks */,
+				48B1242C19425E6C00835400 /* QuartzCore.framework in Frameworks */,
 				48EAC21B1941380C00B0A30A /* CoreGraphics.framework in Frameworks */,
 				48EAC21D1941380C00B0A30A /* UIKit.framework in Frameworks */,
 				48EAC2191941380C00B0A30A /* Foundation.framework in Frameworks */,
+				D4AA768BF3584DE0B874DFA1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +137,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48B1243619466EEA00835400 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				48B124251942321400835400 /* ESLWeatherDataManager.h */,
+				48B124261942321400835400 /* ESLWeatherDataManager.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		48B1243719466EFA00835400 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				48EAC22A1941380C00B0A30A /* Main_iPhone.storyboard */,
+				48EAC22D1941380C00B0A30A /* Main_iPad.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		48B1243819466F0700835400 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				488C37161947743700F5BE9C /* ESLDetailsViewController.h */,
+				488C37171947743700F5BE9C /* ESLDetailsViewController.m */,
+				48EAC2301941380C00B0A30A /* ESLViewController.h */,
+				48EAC2311941380C00B0A30A /* ESLViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		48C314CD1947B6B9007B049E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				48B12422194231CE00835400 /* Reachability.h */,
+				48B12423194231CE00835400 /* Reachability.m */,
+				48C314CA1947B6AD007B049E /* MBProgressHUD.h */,
+				48C314CB1947B6AD007B049E /* MBProgressHUD.m */,
+			);
+			name = Helpers;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		48EAC20C1941380C00B0A30A = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +185,7 @@
 				48EAC2401941380C00B0A30A /* EricWeatherTests */,
 				48EAC2171941380C00B0A30A /* Frameworks */,
 				48EAC2161941380C00B0A30A /* Products */,
+				437C599E6B924FDF8379B922 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,10 +201,16 @@
 		48EAC2171941380C00B0A30A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				488C37101947732100F5BE9C /* SpriteKit.framework */,
+				48B1243119425ED600835400 /* SystemConfiguration.framework */,
+				48B1242F19425ECB00835400 /* MobileCoreServices.framework */,
+				48B1242D19425E7300835400 /* CoreLocation.framework */,
+				48B1242B19425E6C00835400 /* QuartzCore.framework */,
 				48EAC2181941380C00B0A30A /* Foundation.framework */,
 				48EAC21A1941380C00B0A30A /* CoreGraphics.framework */,
 				48EAC21C1941380C00B0A30A /* UIKit.framework */,
 				48EAC23A1941380C00B0A30A /* XCTest.framework */,
+				3FC9A7F56C784C1AB7DA275B /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -114,12 +218,18 @@
 		48EAC21E1941380C00B0A30A /* EricWeather */ = {
 			isa = PBXGroup;
 			children = (
+				48B1243719466EFA00835400 /* View */,
+				48B1243819466F0700835400 /* Controller */,
+				48B1243619466EEA00835400 /* Model */,
 				48EAC2271941380C00B0A30A /* ESLAppDelegate.h */,
 				48EAC2281941380C00B0A30A /* ESLAppDelegate.m */,
-				48EAC22A1941380C00B0A30A /* Main_iPhone.storyboard */,
-				48EAC22D1941380C00B0A30A /* Main_iPad.storyboard */,
-				48EAC2301941380C00B0A30A /* ESLViewController.h */,
-				48EAC2311941380C00B0A30A /* ESLViewController.m */,
+				488C371919477C3D00F5BE9C /* ESLWeatherEffectsScene.h */,
+				488C371A19477C3D00F5BE9C /* ESLWeatherEffectsScene.m */,
+				488C370D19476CFF00F5BE9C /* ESLBackgroundLayer.h */,
+				488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */,
+				48B1241F1942316100835400 /* ESLWebRequestManager.h */,
+				48B124201942316100835400 /* ESLWebRequestManager.m */,
+				48C314CD1947B6B9007B049E /* Helpers */,
 				48EAC2331941380C00B0A30A /* Images.xcassets */,
 				48EAC21F1941380C00B0A30A /* Supporting Files */,
 			);
@@ -129,10 +239,18 @@
 		48EAC21F1941380C00B0A30A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				48C314D0194912D2007B049E /* Cloud01.png */,
+				48C314D2194917FF007B049E /* Cloud02.png */,
+				48C314D419491B4A007B049E /* Cloud03.png */,
+				488C371C19477EFB00F5BE9C /* Cloudy.sks */,
+				488C371D19477EFB00F5BE9C /* spark.png */,
 				48EAC2201941380C00B0A30A /* EricWeather-Info.plist */,
 				48EAC2211941380C00B0A30A /* InfoPlist.strings */,
 				48EAC2241941380C00B0A30A /* main.m */,
 				48EAC2261941380C00B0A30A /* EricWeather-Prefix.pch */,
+				488C37121947736F00F5BE9C /* RainEffect.sks */,
+				48C314CE1949034F007B049E /* raindrop.png */,
+				488C37131947736F00F5BE9C /* spark.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -162,9 +280,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48EAC24A1941380C00B0A30A /* Build configuration list for PBXNativeTarget "EricWeather" */;
 			buildPhases = (
+				A9425B1612D9461A85B1B438 /* Check Pods Manifest.lock */,
 				48EAC2111941380C00B0A30A /* Sources */,
 				48EAC2121941380C00B0A30A /* Frameworks */,
 				48EAC2131941380C00B0A30A /* Resources */,
+				40111E074D4D494B93E63BC4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,8 +352,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48C314D1194912D2007B049E /* Cloud01.png in Resources */,
+				48C314D3194917FF007B049E /* Cloud02.png in Resources */,
 				48EAC22F1941380C00B0A30A /* Main_iPad.storyboard in Resources */,
+				48C314CF1949034F007B049E /* raindrop.png in Resources */,
+				48C314D519491B4A007B049E /* Cloud03.png in Resources */,
+				488C37151947736F00F5BE9C /* spark.png in Resources */,
 				48EAC2341941380C00B0A30A /* Images.xcassets in Resources */,
+				488C37141947736F00F5BE9C /* RainEffect.sks in Resources */,
+				488C371E19477EFB00F5BE9C /* Cloudy.sks in Resources */,
+				488C371F19477EFB00F5BE9C /* spark.png in Resources */,
 				48EAC22C1941380C00B0A30A /* Main_iPhone.storyboard in Resources */,
 				48EAC2231941380C00B0A30A /* InfoPlist.strings in Resources */,
 			);
@@ -249,14 +377,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		40111E074D4D494B93E63BC4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9425B1612D9461A85B1B438 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		48EAC2111941380C00B0A30A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				488C370F19476CFF00F5BE9C /* ESLBackgroundLayer.m in Sources */,
 				48EAC2321941380C00B0A30A /* ESLViewController.m in Sources */,
+				48B124271942321400835400 /* ESLWeatherDataManager.m in Sources */,
+				48C314CC1947B6AD007B049E /* MBProgressHUD.m in Sources */,
+				488C37181947743700F5BE9C /* ESLDetailsViewController.m in Sources */,
+				48B124211942316100835400 /* ESLWebRequestManager.m in Sources */,
 				48EAC2251941380C00B0A30A /* main.m in Sources */,
+				48B12424194231CE00835400 /* Reachability.m in Sources */,
 				48EAC2291941380C00B0A30A /* ESLAppDelegate.m in Sources */,
+				488C371B19477C3D00F5BE9C /* ESLWeatherEffectsScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,12 +556,14 @@
 		};
 		48EAC24B1941380C00B0A30A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 437C599E6B924FDF8379B922 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EricWeather/EricWeather-Prefix.pch";
 				INFOPLIST_FILE = "EricWeather/EricWeather-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -401,12 +571,14 @@
 		};
 		48EAC24C1941380C00B0A30A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 437C599E6B924FDF8379B922 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EricWeather/EricWeather-Prefix.pch";
 				INFOPLIST_FILE = "EricWeather/EricWeather-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -471,6 +643,7 @@
 				48EAC24C1941380C00B0A30A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		48EAC24D1941380C00B0A30A /* Build configuration list for PBXNativeTarget "EricWeatherTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +652,7 @@
 				48EAC24F1941380C00B0A30A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
