@@ -17,6 +17,7 @@
 @interface ESLViewController : UITableViewController
 
 - (IBAction)addCity:(id)sender;
+- (BOOL)hasLeadingNumberInString:(NSString*)str;
 
 @property (nonatomic,strong) CAGradientLayer *maskLayer; // for gradients in the table view
 @property (nonatomic, strong) ESLWeatherDataManager *mainModel;

@@ -18,13 +18,7 @@
 - (ESLWeatherDataManager *)mainModel
 {
     if (!_mainModel) {
-        // animate the MBProgressHUD
-        //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
         _mainModel = [[ESLWeatherDataManager alloc] initDefault];
-        
-        // disable the MBProgressHUD
-        //[MBProgressHUD hideHUDForView:self.view animated:YES];
     }
     
     return _mainModel;
@@ -68,10 +62,6 @@
                                     [NSNumber numberWithFloat:0.1],
                                     [NSNumber numberWithFloat:0.9],
                                     [NSNumber numberWithFloat:1.0], nil];
-        /*
-         self.maskLayer.bounds = CGRectMake(0, 0,
-         self.tableView.frame.size.width,
-         self.tableView.frame.size.height);*/
         self.maskLayer.anchorPoint = CGPointZero;
         
         [self.view.layer addSublayer:self.maskLayer];
@@ -147,8 +137,10 @@
 
 - (IBAction)addCity:(id)sender
 {
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Add City" message:@"Zip Code" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add City" message:@"City, State OR Zip Code" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [alert textFieldAtIndex:0];
+    textField.placeholder = @"San Francisco, CA";
     [alert addButtonWithTitle:@"Submit"];
     [alert show];
 }
@@ -162,17 +154,46 @@
     
     if (buttonIndex == 1) {
         // Add city if valid
-        NSLog(@"valid button click");
         
-        NSString *newCity = detailString;
         NSString *httpRequestURL = @"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/";
-        httpRequestURL = [httpRequestURL stringByAppendingString:newCity];
-        NSString *jsonTag = @".json";
-        httpRequestURL = [httpRequestURL stringByAppendingString:jsonTag];
+    
+        // if entry was city
+        if(![self hasLeadingNumberInString:detailString])
+        {
+            NSArray *subStrings = [detailString componentsSeparatedByString:@", "];
+            NSString *newCity = [subStrings objectAtIndex:0];
+            NSString *state = [subStrings objectAtIndex:1];
+            
+            NSString *backslash = @"/";
+            NSString *modifiedCityString = [newCity stringByReplacingOccurrencesOfString:@" "
+                                                                                 withString:@"_"];
+            httpRequestURL = [httpRequestURL stringByAppendingString:backslash];
+            httpRequestURL = [httpRequestURL stringByAppendingString:state];
+            httpRequestURL = [httpRequestURL stringByAppendingString:backslash];
+            httpRequestURL = [httpRequestURL stringByAppendingString:modifiedCityString];
+            NSString *jsonTag = @".json";
+            httpRequestURL = [httpRequestURL stringByAppendingString:jsonTag];
+        }
+        // else if it was a zip code
+        else
+        {
+            NSString *newCity = detailString;
+            httpRequestURL = [httpRequestURL stringByAppendingString:newCity];
+            NSString *jsonTag = @".json";
+            httpRequestURL = [httpRequestURL stringByAppendingString:jsonTag];
+        }
         
         // add city to the model
         [self.mainModel addCityToModel:httpRequestURL];
     }
+}
+
+- (BOOL)hasLeadingNumberInString:(NSString*)str
+{
+    if (str)
+        return [str length] && isnumber([str characterAtIndex:0]);
+    else
+        return NO;
 }
 
 #pragma mark - Table view data source

@@ -165,7 +165,7 @@
             NSLog(@"No suitable city found");
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
-                                                            message:@"Not a valid zip code"
+                                                            message:@"Not a valid city, state OR zip"
                                                            delegate:self
                                                   cancelButtonTitle:@"Dismiss"
                                                   otherButtonTitles:nil, nil];
