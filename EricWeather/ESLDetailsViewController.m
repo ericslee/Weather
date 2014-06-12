@@ -106,7 +106,7 @@
         [self.view.layer insertSublayer:bgLayer atIndex:0];
         
         // effect
-        CAEmitterLayer *emitterLayer = [CAEmitterLayer layer]; // 1
+        CAEmitterLayer *emitterLayer = [CAEmitterLayer layer]; 
         emitterLayer.backgroundColor = [[UIColor colorWithWhite:0.0 alpha:0.0] CGColor];
         emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.origin.y); // 2
         emitterLayer.emitterZPosition = 10; // 3
