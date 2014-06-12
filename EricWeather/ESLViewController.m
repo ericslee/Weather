@@ -19,15 +19,12 @@
 {
     if (!_mainModel) {
         // animate the MBProgressHUD
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         _mainModel = [[ESLWeatherDataManager alloc] initDefault];
         
-         //NSData *profileData = [ESLWebRequestManager dataFromString:SFO_URL];
-         //_mainModel = [[ESLWeatherDataManager alloc] initWithNSData:_responseData];
-        
         // disable the MBProgressHUD
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //[MBProgressHUD hideHUDForView:self.view animated:YES];
     }
     
     return _mainModel;
@@ -86,7 +83,7 @@
     // create a UIRefreshControl for reloading the data in the table with new facts
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc]
                                         init];
-    refreshControl.tintColor = [UIColor whiteColor];
+    refreshControl.tintColor = [UIColor darkGrayColor];
     [refreshControl addTarget:self action:@selector(refreshTable:)
              forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
@@ -95,24 +92,53 @@
 // refreshes the data in the table
 - (void)refreshTable:(UIRefreshControl *)refreshControl
 {
-    // get new JSON table to pull from
-    //_mainModel = [[ESLWeatherDataManager alloc] initDefault];
+    // animate the MBProgressHUD
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     // store the cities to refresh
     self.tempCities = [[NSMutableArray alloc] initWithArray:self.mainModel.zipCodesArray];
     _mainModel = [[ESLWeatherDataManager alloc] initRefreshData:self.tempCities];
     
-    //TODO: specific initializer for refreshing
-    
-    // add all previous cities too
-    
     // reload the table
     [self.tableView reloadData];
+    
+    // disable the MBProgressHUD
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     // stop the refreshing animation
     [refreshControl endRefreshing];
 }
 
+/*
+// refreshes the data in the table
+- (void)refreshTable:(UIRefreshControl *)refreshControl
+{
+    // animate the MBProgressHUD
+    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        // Do something...
+        // store the cities to refresh
+        self.tempCities = [[NSMutableArray alloc] initWithArray:self.mainModel.zipCodesArray];
+        _mainModel = [[ESLWeatherDataManager alloc] initRefreshData:self.tempCities];
+
+        // reload the table
+        [self.tableView reloadData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
+ 
+    
+    // disable the MBProgressHUD
+    //[MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    // stop the refreshing animation
+    [refreshControl endRefreshing];
+}
+*/
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -121,23 +147,10 @@
 
 - (IBAction)addCity:(id)sender
 {
-    NSLog(@"Add city");
-    
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Add City" message:@"Zip Code" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert addButtonWithTitle:@"Submit"];
     [alert show];
-    
-    /*
-    NSString *newCity = @"30189";
-    NSString *httpRequestURL = @"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/";
-    httpRequestURL = [httpRequestURL stringByAppendingString:newCity];
-    NSString *jsonTag = @".json";
-    httpRequestURL = [httpRequestURL stringByAppendingString:jsonTag];
-    
-    // add city to the model
-    [self.mainModel addCityToModel:httpRequestURL];
-     */
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -170,15 +183,13 @@
     // Return the number of sections.
     NSLog(@"%ld", _mainModel.numCities);
     return self.mainModel.numCities;
-    //return 5;
 }
 
 // columns
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    // per fact/number
-    //return self.mainModel.numKeys;
+    // per city
     return 1;
 }
 
@@ -192,12 +203,6 @@
     
     // Configure the cell...
     // visually
-    //[cell.layer setCornerRadius:7.0f];
-    //[cell.layer setMasksToBounds:YES];
-    //[cell.layer setBackgroundColor:[U]]
-    //[cell.layer setBorderWidth:2.0f];
-    //[cell.layer setBorderColor:[[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.1] CGColor]];
-    //cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.1];
     cell.backgroundColor = [UIColor clearColor];
     UIView *backgroundView = (id)[cell viewWithTag:5];
     [backgroundView.layer setCornerRadius:7.0f];
@@ -234,6 +239,7 @@
     return cell;
 }
 
+// act on cell selection
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.mainModel.currentIndex = [indexPath section];
@@ -260,6 +266,7 @@
                                                object:nil];
 }
 
+// notifcation function to update the table view cells
 - (void)updateWeatherView:(NSNotification *)notification
 {
     NSLog(@"Data updated");
