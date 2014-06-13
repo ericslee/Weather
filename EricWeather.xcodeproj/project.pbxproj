@@ -12,7 +12,6 @@
 		488C37141947736F00F5BE9C /* RainEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 488C37121947736F00F5BE9C /* RainEffect.sks */; };
 		488C37151947736F00F5BE9C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 488C37131947736F00F5BE9C /* spark.png */; };
 		488C37181947743700F5BE9C /* ESLDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 488C37171947743700F5BE9C /* ESLDetailsViewController.m */; };
-		488C371B19477C3D00F5BE9C /* ESLWeatherEffectsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 488C371A19477C3D00F5BE9C /* ESLWeatherEffectsScene.m */; };
 		488C371E19477EFB00F5BE9C /* Cloudy.sks in Resources */ = {isa = PBXBuildFile; fileRef = 488C371C19477EFB00F5BE9C /* Cloudy.sks */; };
 		488C371F19477EFB00F5BE9C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 488C371D19477EFB00F5BE9C /* spark.png */; };
 		48B124211942316100835400 /* ESLWebRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B124201942316100835400 /* ESLWebRequestManager.m */; };
@@ -65,8 +64,6 @@
 		488C37131947736F00F5BE9C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		488C37161947743700F5BE9C /* ESLDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESLDetailsViewController.h; sourceTree = "<group>"; };
 		488C37171947743700F5BE9C /* ESLDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLDetailsViewController.m; sourceTree = "<group>"; };
-		488C371919477C3D00F5BE9C /* ESLWeatherEffectsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESLWeatherEffectsScene.h; sourceTree = "<group>"; };
-		488C371A19477C3D00F5BE9C /* ESLWeatherEffectsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLWeatherEffectsScene.m; sourceTree = "<group>"; };
 		488C371C19477EFB00F5BE9C /* Cloudy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Cloudy.sks; path = ../Cloudy.sks; sourceTree = "<group>"; };
 		488C371D19477EFB00F5BE9C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../spark.png; sourceTree = "<group>"; };
 		48B1241F1942316100835400 /* ESLWebRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESLWebRequestManager.h; sourceTree = "<group>"; };
@@ -223,8 +220,6 @@
 				48B1243619466EEA00835400 /* Model */,
 				48EAC2271941380C00B0A30A /* ESLAppDelegate.h */,
 				48EAC2281941380C00B0A30A /* ESLAppDelegate.m */,
-				488C371919477C3D00F5BE9C /* ESLWeatherEffectsScene.h */,
-				488C371A19477C3D00F5BE9C /* ESLWeatherEffectsScene.m */,
 				488C370D19476CFF00F5BE9C /* ESLBackgroundLayer.h */,
 				488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */,
 				48B1241F1942316100835400 /* ESLWebRequestManager.h */,
@@ -424,7 +419,6 @@
 				48EAC2251941380C00B0A30A /* main.m in Sources */,
 				48B12424194231CE00835400 /* Reachability.m in Sources */,
 				48EAC2291941380C00B0A30A /* ESLAppDelegate.m in Sources */,
-				488C371B19477C3D00F5BE9C /* ESLWeatherEffectsScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

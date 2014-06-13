@@ -26,6 +26,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    // gradient positioning
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
     self.maskLayer.position = CGPointMake(0, scrollView.contentOffset.y);
@@ -39,11 +40,7 @@
     
     // set the background
     UIImage *backgroundImage = [UIImage imageNamed:@"bluesky_blur"];
-    //self.view.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:backgroundImage];
-    self.tableView.backgroundView.alpha = 1.0;
-    //self.tableView.backgroundColor = [UIColor clearColor];
-    //self.tableView.opaque = NO;
     
     // remove separator lines
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -79,6 +76,12 @@
     self.refreshControl = refreshControl;
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 // refreshes the data in the table
 - (void)refreshTable:(UIRefreshControl *)refreshControl
 {
@@ -99,41 +102,6 @@
     [refreshControl endRefreshing];
 }
 
-/*
-// refreshes the data in the table
-- (void)refreshTable:(UIRefreshControl *)refreshControl
-{
-    // animate the MBProgressHUD
-    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        // Do something...
-        // store the cities to refresh
-        self.tempCities = [[NSMutableArray alloc] initWithArray:self.mainModel.zipCodesArray];
-        _mainModel = [[ESLWeatherDataManager alloc] initRefreshData:self.tempCities];
-
-        // reload the table
-        [self.tableView reloadData];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        });
-    });
- 
-    
-    // disable the MBProgressHUD
-    //[MBProgressHUD hideHUDForView:self.view animated:YES];
-    
-    // stop the refreshing animation
-    [refreshControl endRefreshing];
-}
-*/
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (IBAction)addCity:(id)sender
 {
@@ -188,6 +156,7 @@
     }
 }
 
+// helper method for checking if first number in string is numeric
 - (BOOL)hasLeadingNumberInString:(NSString*)str
 {
     if (str)
@@ -244,9 +213,6 @@
         // set the text based on the section index
         NSString *cellCity = [NSString stringWithFormat:@"%@", [self.mainModel.citiesArray objectAtIndex:index]];
         cityLabel.text = cellCity;
-    
-        //UILabel *weatherLabel = (id)[cell viewWithTag:2];
-        //weatherLabel.text = [NSString stringWithFormat:@"%@", [self.mainModel.conditionsDictionary objectForKey:cellCity]];
         
         UILabel *temperatureLabel = (id)[cell viewWithTag:3];
         NSString *temperatureString = [NSString stringWithFormat:@"%@°", [self.mainModel.temperatureStringDictionary objectForKey:cellCity]];
@@ -279,23 +245,6 @@
     }
 }
 
-- (void)registerForNotifications
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateWeatherView:)
-                                                 name:@"DataReceived"
-                                               object:nil];
-}
-
-// notifcation function to update the table view cells
-- (void)updateWeatherView:(NSNotification *)notification
-{
-    NSLog(@"Data updated");
-    
-    // reload the data
-    [self.tableView reloadData];
-}
-
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
@@ -316,6 +265,26 @@
     vc.humidityString = [NSString stringWithFormat:@"Humidity: %@", [self.mainModel.humidityStringDictionary objectForKey:vc.city]];
     vc.feelsLike = [NSString stringWithFormat:@"Feels like: %@°", [self.mainModel.feelsLikeStringDictionary objectForKey:vc.city]];
     vc.weatherEffect = [NSString stringWithFormat:@"%@", [self.mainModel.weatherEffectsDictionary objectForKey:vc.city]];
+}
+
+#pragma mark - Notifications
+
+// Notifications
+- (void)registerForNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateWeatherView:)
+                                                 name:@"DataReceived"
+                                               object:nil];
+}
+
+// notifcation function to update the table view cells
+- (void)updateWeatherView:(NSNotification *)notification
+{
+    NSLog(@"Data updated");
+    
+    // reload the data
+    [self.tableView reloadData];
 }
 
 @end

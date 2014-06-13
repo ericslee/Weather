@@ -10,8 +10,7 @@
 
 @implementation ESLWeatherDataManager
 
-// designated initializer, runs code when object is initialized
-
+// initializer when app first opens
 - (id)initDefault
 {
     self = [super init];
@@ -35,7 +34,7 @@
     // perform a HTTP web request and then set our properties
     // default example - San Francisco
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:
-                                [NSURL URLWithString:@"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/94107.json"]];
+                                [NSURL URLWithString:SFO_URL]];
     NSURLConnection *theConnection=[[NSURLConnection alloc]
                                     initWithRequest:theRequest delegate:self];
     if(theConnection){
@@ -47,10 +46,9 @@
     return self;
 }
 
+// initializer when table is refreshed
 - (id)initRefreshData:(NSMutableArray *)citiesToReload
 {
-    NSLog(@"Temp cities count: %@", citiesToReload);
-    
     self = [super init];
     
     // init dictionary
@@ -73,10 +71,9 @@
     for(NSString *city in citiesToReload)
     {
         NSString *newCity = city;
-        NSString *httpRequestURL = @"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/";
+        NSString *httpRequestURL = HTTP_REQUEST_URL;
         httpRequestURL = [httpRequestURL stringByAppendingString:newCity];
-        NSString *jsonTag = @".json";
-        httpRequestURL = [httpRequestURL stringByAppendingString:jsonTag];
+        httpRequestURL = [httpRequestURL stringByAppendingString:JSON_EXTENSION];
         
         [self addCityToModel:httpRequestURL];
     }
@@ -150,25 +147,21 @@
     
     NSError *myError = nil;
     
-    
-   
-        // parse json data
-        NSDictionary *rawParsedJson = [NSJSONSerialization JSONObjectWithData:_currentCityWeatherData options:NSJSONReadingMutableLeaves  error:&myError];
-        NSArray *results =  [rawParsedJson objectForKey:@"current_observation"];
-        if([results count] == 0)
-        {
-            // handle nil case
-            NSLog(@"No suitable city found");
+    // parse json data
+    NSDictionary *rawParsedJson = [NSJSONSerialization JSONObjectWithData:_currentCityWeatherData options:NSJSONReadingMutableLeaves  error:&myError];
+    NSArray *results =  [rawParsedJson objectForKey:@"current_observation"];
+    if([results count] == 0)
+    {
+        // handle invalid input
+        NSLog(@"No suitable city found");
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
-                                                            message:@"Not a valid city, state OR zip"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Dismiss"
-                                                  otherButtonTitles:nil, nil];
-            [alert show];
-
-            
-        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
+                                                        message:@"Not a valid city, state OR zip"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Dismiss"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+    }
     else
     {
         NSString *city = [[results valueForKey:@"display_location"] valueForKey:@"city"];
@@ -194,11 +187,10 @@
         [self.temperatureStringDictionary setObject:[parsedJson valueForKey:@"temp_f"] forKey:city];
 
         // Store the icon url
-        NSString *iconURL = @"http://icons.wxug.com/i/c/i/";
+        NSString *iconURL = ICON_URL;
         NSString *iconType = [parsedJson valueForKey:@"icon"];
         iconURL = [iconURL stringByAppendingString:iconType];
-        NSString *gifTag = @".gif";
-        iconURL = [iconURL stringByAppendingString:gifTag];
+        iconURL = [iconURL stringByAppendingString:GIF_EXTENSION];
         [self.iconDictionary setObject:iconURL forKey:city];
         
         // Store the wind condition

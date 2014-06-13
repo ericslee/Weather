@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "ESLViewController.h"
+
+#define SFO_URL @"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/94107.json"
+#define HTTP_REQUEST_URL @"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/"
+#define JSON_EXTENSION @".json"
+#define ICON_URL @"http://icons.wxug.com/i/c/i/"
+#define GIF_EXTENSION @".gif"
 
 @interface ESLWeatherDataManager : NSObject
 

@@ -13,8 +13,7 @@
 
 @interface ESLBackgroundLayer : NSObject
 
-+(CAGradientLayer*) greyGradient;
-+(CAGradientLayer*) blueGradient;
++(CAGradientLayer*) rainGradient;
 +(CAGradientLayer*) sunnyGradient;
 +(CAGradientLayer*) snowGradient;
 +(CAGradientLayer*) cloudyGradient;

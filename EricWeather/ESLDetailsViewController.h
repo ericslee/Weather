@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "ESLWeatherDataManager.h"
 #import <SpriteKit/SpriteKit.h>
-#import "ESLWeatherEffectsScene.h"
 #import "ESLBackgroundLayer.h"
 
 @interface ESLDetailsViewController : UIViewController

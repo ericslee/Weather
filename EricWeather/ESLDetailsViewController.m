@@ -47,7 +47,7 @@
        || [self.weatherEffect isEqualToString:@"tstorms"])
     {
         // background
-        CAGradientLayer *bgLayer = [ESLBackgroundLayer blueGradient];
+        CAGradientLayer *bgLayer = [ESLBackgroundLayer rainGradient];
         bgLayer.frame = self.view.bounds;
         [self.view.layer insertSublayer:bgLayer atIndex:0];
         
