@@ -16,14 +16,16 @@
 
 @interface ESLViewController : UITableViewController
 
-- (IBAction)addCity:(id)sender;
-- (BOOL)hasLeadingNumberInString:(NSString*)str;
-
 @property (nonatomic,strong) CAGradientLayer *maskLayer; // for gradients in the table view
-@property (nonatomic, strong) ESLWeatherDataManager *mainModel;
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) ESLWeatherDataManager *mainModel; // stores all of the weather data
 
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) NSMutableArray *tempCities;
+
+// add city
+- (IBAction)addCity:(id)sender;
+
+// helper method for checking if first number in string is numeric
+- (BOOL)hasLeadingNumberInString:(NSString*)str;
 
 @end

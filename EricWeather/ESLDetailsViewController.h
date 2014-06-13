@@ -14,6 +14,7 @@
 
 @interface ESLDetailsViewController : UIViewController
 
+// various details that will be displayed
 @property (nonatomic, strong) NSString *city;
 @property (nonatomic, strong) NSString *condition;
 @property (nonatomic, strong) NSString *temperature;

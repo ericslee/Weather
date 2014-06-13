@@ -27,7 +27,6 @@
 		48C314D1194912D2007B049E /* Cloud01.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314D0194912D2007B049E /* Cloud01.png */; };
 		48C314D3194917FF007B049E /* Cloud02.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314D2194917FF007B049E /* Cloud02.png */; };
 		48C314D519491B4A007B049E /* Cloud03.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314D419491B4A007B049E /* Cloud03.png */; };
-		48C582AA194A748A00FA6D37 /* ESLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C582A9194A748A00FA6D37 /* ESLLocationManager.m */; };
 		48EAC2191941380C00B0A30A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC2181941380C00B0A30A /* Foundation.framework */; };
 		48EAC21B1941380C00B0A30A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC21A1941380C00B0A30A /* CoreGraphics.framework */; };
 		48EAC21D1941380C00B0A30A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC21C1941380C00B0A30A /* UIKit.framework */; };
@@ -86,8 +85,6 @@
 		48C314D0194912D2007B049E /* Cloud01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud01.png; sourceTree = "<group>"; };
 		48C314D2194917FF007B049E /* Cloud02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud02.png; sourceTree = "<group>"; };
 		48C314D419491B4A007B049E /* Cloud03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud03.png; sourceTree = "<group>"; };
-		48C582A8194A748A00FA6D37 /* ESLLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESLLocationManager.h; sourceTree = "<group>"; };
-		48C582A9194A748A00FA6D37 /* ESLLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLLocationManager.m; sourceTree = "<group>"; };
 		48EAC2151941380C00B0A30A /* EricWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EricWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EAC2181941380C00B0A30A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		48EAC21A1941380C00B0A30A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -235,8 +232,6 @@
 				48C314CD1947B6B9007B049E /* Helpers */,
 				48EAC2331941380C00B0A30A /* Images.xcassets */,
 				48EAC21F1941380C00B0A30A /* Supporting Files */,
-				48C582A8194A748A00FA6D37 /* ESLLocationManager.h */,
-				48C582A9194A748A00FA6D37 /* ESLLocationManager.m */,
 			);
 			path = EricWeather;
 			sourceTree = "<group>";
@@ -426,7 +421,6 @@
 				48C314CC1947B6AD007B049E /* MBProgressHUD.m in Sources */,
 				488C37181947743700F5BE9C /* ESLDetailsViewController.m in Sources */,
 				48B124211942316100835400 /* ESLWebRequestManager.m in Sources */,
-				48C582AA194A748A00FA6D37 /* ESLLocationManager.m in Sources */,
 				48EAC2251941380C00B0A30A /* main.m in Sources */,
 				48B12424194231CE00835400 /* Reachability.m in Sources */,
 				48EAC2291941380C00B0A30A /* ESLAppDelegate.m in Sources */,

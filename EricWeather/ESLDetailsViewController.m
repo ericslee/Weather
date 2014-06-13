@@ -10,8 +10,6 @@
 
 @interface ESLDetailsViewController ()
 
-//@property (weak, nonatomic) IBOutlet SKView *particleBackground;
-
 @property (nonatomic, strong) IBOutlet UILabel *cityLabel;
 @property (nonatomic, strong) IBOutlet UILabel *conditionLabel;
 @property (nonatomic, strong) IBOutlet UILabel *temperatureLabel;
@@ -24,34 +22,26 @@
 
 @implementation ESLDetailsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        
-        
-   
-    }
-    return self;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    //ESLWeatherEffectsScene * scene = [ESLWeatherEffectsScene sceneWithSize:_particleBackground.bounds.size];
-    //scene.scaleMode = SKSceneScaleModeAspectFill;
-    //[_particleBackground presentScene:scene];
-    
-    NSLog(@"%@", self.weatherEffect);
-    
     // Determine what particle effect to play based on icon string in json
+    [self determineWeatherEffect];
+    
+    // set the text for all the labels in the detail view
+    self.cityLabel.text = self.city;
+    self.conditionLabel.text = self.condition;
+    self.temperatureLabel.text = self.temperature;
+    self.weatherIcon.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.icon]]];
+    self.windStringLabel.text = self.windString;
+    self.humidityLabel.text = self.humidityString;
+    self.feelsLikeLabel.text = self.feelsLike;
+}
+
+// Set the background, text color, and particle effect based on the icon string
+- (void)determineWeatherEffect
+{
     // Rain
     if([self.weatherEffect isEqualToString:@"rain"] || [self.weatherEffect isEqualToString:@"chancerain"] || [self.weatherEffect isEqualToString:@"chancestorms"]
        || [self.weatherEffect isEqualToString:@"tstorms"])
@@ -106,7 +96,7 @@
         [self.view.layer insertSublayer:bgLayer atIndex:0];
         
         // effect
-        CAEmitterLayer *emitterLayer = [CAEmitterLayer layer]; 
+        CAEmitterLayer *emitterLayer = [CAEmitterLayer layer];
         emitterLayer.backgroundColor = [[UIColor colorWithWhite:0.0 alpha:0.0] CGColor];
         emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.origin.y); // 2
         emitterLayer.emitterZPosition = 10; // 3
@@ -122,7 +112,7 @@
         emitterCell.velocity = 200; // 12
         emitterCell.velocityRange = 50; // 13
         emitterCell.yAcceleration = 250; // 14
-         
+        
         emitterCell.contents = (id)[[UIImage imageNamed:@"spark.png"] CGImage]; // 15
         emitterLayer.emitterCells = [NSArray arrayWithObject:emitterCell]; // 16
         [self.view.layer addSublayer:emitterLayer]; // 17
@@ -173,7 +163,7 @@
         //emitterCell.xAcceleration = -50;
         emitterCell.color = [[UIColor colorWithWhite:1.0 alpha:0.5] CGColor];
         emitterCell.contents = (id)[[UIImage imageNamed:@"Cloud01.png"] CGImage]; // 15
-
+        
         // second cloud type
         // GO TO THE RIGHT
         CAEmitterCell *emitterCell2 = [CAEmitterCell emitterCell]; // 6
@@ -219,15 +209,6 @@
         _humidityLabel.textColor = [UIColor darkGrayColor];
         _feelsLikeLabel.textColor = [UIColor darkGrayColor];
     }
-    // Snow
-    
-    _cityLabel.text = self.city;
-    _conditionLabel.text = self.condition;
-    _temperatureLabel.text = self.temperature;
-    _weatherIcon.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.icon]]];
-    _windStringLabel.text = self.windString;
-    _humidityLabel.text = self.humidityString;
-    _feelsLikeLabel.text = self.feelsLike;
 }
 
 @end

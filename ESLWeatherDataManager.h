@@ -11,15 +11,13 @@
 
 @interface ESLWeatherDataManager : NSObject
 
-- (id)initDefault; // default initializer that loads S.F. data
-- (id)initRefreshData:(NSMutableArray *)citiesToReload; // refreshes data for all cities added
-- (void)addCityToModel:(NSString *)cityURL; // add city to model
-- (void)removeCityFromModel:(NSString *)cityToRemove; // remove swiped city from model
+// weather data for most recent city
+@property (nonatomic, strong) NSMutableData *currentCityWeatherData;
 
-@property (nonatomic, strong) NSMutableData *currentCityWeatherData; // weather data for most recent city
-
-@property (nonatomic) NSInteger numCities; // number of cities in list (and therefore number of keys)
-@property (nonatomic, strong) NSMutableDictionary *weatherDataDictionary; // stores weather json parsed as dictionaries in a dictionary w/ city as the key
+// number of cities in list (and therefore number of keys)
+@property (nonatomic) NSInteger numCities;
+// stores weather json parsed as dictionaries in a dictionary w/ city as the key
+@property (nonatomic, strong) NSMutableDictionary *weatherDataDictionary;
 
 // stores all cities in list to maintain ordering
 @property (nonatomic, strong) NSMutableArray *citiesArray;
@@ -34,6 +32,22 @@
 @property (nonatomic, strong) NSMutableDictionary *feelsLikeStringDictionary;
 @property (nonatomic, strong) NSMutableDictionary *weatherEffectsDictionary; // determines weather effect on the detail view
 
-@property (nonatomic) NSInteger currentIndex; // current cell index
+// current cell index
+@property (nonatomic) NSInteger currentIndex;
+
+
+
+// default initializer that loads S.F. data
+- (id)initDefault;
+
+// refreshes data for all cities added
+- (id)initRefreshData:(NSMutableArray *)citiesToReload;
+
+// add city to model
+- (void)addCityToModel:(NSString *)cityURL;
+
+// remove swiped city from model
+- (void)removeCityFromModel:(NSString *)cityToRemove;
+
 
 @end

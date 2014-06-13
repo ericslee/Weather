@@ -33,8 +33,7 @@
     self.weatherEffectsDictionary = [[NSMutableDictionary alloc] init];
     
     // perform a HTTP web request and then set our properties
-    // default - San Francisco
-    //TODO: make based on user location
+    // default example - San Francisco
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:
                                 [NSURL URLWithString:@"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/94107.json"]];
     NSURLConnection *theConnection=[[NSURLConnection alloc]
@@ -50,9 +49,6 @@
 
 - (id)initRefreshData:(NSMutableArray *)citiesToReload
 {
-    // cache the cities list
-    //NSMutableArray *tempCities = [[NSMutableArray alloc] initWithArray:self.citiesArray];
-    
     NSLog(@"Temp cities count: %@", citiesToReload);
     
     self = [super init];
