@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) NSString *cityName;
 @property (nonatomic, strong) NSString *zipCode;
-@property (nonatomic, strong) ESLWeatherData *weatherData;
+@property (nonatomic, strong) ESLWeatherData *weatherData; // stores the weather data for this city
 
 - (id)initWithCity:(NSString *)city andZip:(NSString *)zip;
 

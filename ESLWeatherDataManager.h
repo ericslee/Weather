@@ -22,21 +22,9 @@
 
 // number of cities in list (and therefore number of keys)
 @property (nonatomic) NSInteger numCities;
-// stores weather json parsed as dictionaries in a dictionary w/ city as the key
-@property (nonatomic, strong) NSMutableDictionary *weatherDataDictionary;
 
 // stores all cities in list to maintain ordering
 @property (nonatomic, strong) NSMutableArray *citiesArray;
-@property (nonatomic, strong) NSMutableArray *zipCodesArray;
-
-// store all other properties in dictionary
-@property (nonatomic, strong) NSMutableDictionary *conditionsDictionary; // weather conditions
-@property (nonatomic, strong) NSMutableDictionary *temperatureStringDictionary; // temperature in F and C
-@property (nonatomic, strong) NSMutableDictionary *iconDictionary; // weather icon
-@property (nonatomic, strong) NSMutableDictionary *windStringDictionary; 
-@property (nonatomic, strong) NSMutableDictionary *humidityStringDictionary;
-@property (nonatomic, strong) NSMutableDictionary *feelsLikeStringDictionary;
-@property (nonatomic, strong) NSMutableDictionary *weatherEffectsDictionary; // determines weather effect on the detail view
 
 // current cell index
 @property (nonatomic) NSInteger currentIndex;

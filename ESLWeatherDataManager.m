@@ -18,21 +18,7 @@
     // init mutable arrays
     self.citiesArray = [[NSMutableArray alloc] init];
     
-    // init dictionary
-    self.weatherDataDictionary = [[NSMutableDictionary alloc] init];
-    
-    self.zipCodesArray = [[NSMutableArray alloc] init];
-    
     //encapulate
-    
-    // init other data dictionaries
-    self.conditionsDictionary = [[NSMutableDictionary alloc] init];
-    self.temperatureStringDictionary = [[NSMutableDictionary alloc] init];
-    self.iconDictionary = [[NSMutableDictionary alloc] init];
-    self.windStringDictionary = [[NSMutableDictionary alloc] init];
-    self.humidityStringDictionary = [[NSMutableDictionary alloc] init];
-    self.feelsLikeStringDictionary = [[NSMutableDictionary alloc] init];
-    self.weatherEffectsDictionary = [[NSMutableDictionary alloc] init];
     
     // perform a HTTP web request and then set our properties
     // default example - San Francisco
@@ -54,23 +40,8 @@
 {
     self = [super init];
     
-    // if self check
-    
-    // init dictionary
-    _weatherDataDictionary = [[NSMutableDictionary alloc] init];
-    
     // reset mutable array
     self.citiesArray = [[NSMutableArray alloc] init];
-    self.zipCodesArray = [[NSMutableArray alloc] init];
-    
-    // reset other data dictionaries
-    self.conditionsDictionary = [[NSMutableDictionary alloc] init];
-    self.temperatureStringDictionary = [[NSMutableDictionary alloc] init];
-    self.iconDictionary = [[NSMutableDictionary alloc] init];
-    self.windStringDictionary = [[NSMutableDictionary alloc] init];
-    self.humidityStringDictionary = [[NSMutableDictionary alloc] init];
-    self.feelsLikeStringDictionary = [[NSMutableDictionary alloc] init];
-    self.weatherEffectsDictionary = [[NSMutableDictionary alloc] init];
     
     // add all cities again with updated data
     for(NSString *city in citiesToReload)
@@ -101,27 +72,11 @@
 
 - (void)removeCityFromModel:(NSString *)cityToRemove
 {
-    // get index of city
-    NSInteger cityIndex = [self.citiesArray indexOfObject:cityToRemove];
     // remove city from array
     [self.citiesArray removeObject:cityToRemove];
-    // remove zip code
-    [self.zipCodesArray removeObjectAtIndex:cityIndex];
-    
-    NSLog(@"size of cities array: %ld", [self.citiesArray count]);
-    
-    // remove city from all dictionaries
-    [self.weatherDataDictionary removeObjectForKey:cityToRemove];
-    [self.conditionsDictionary removeObjectForKey:cityToRemove];
-    [self.temperatureStringDictionary removeObjectForKey:cityToRemove];
-    [self.iconDictionary removeObjectForKey:cityToRemove];
-    [self.windStringDictionary removeObjectForKey:cityToRemove];
-    [self.humidityStringDictionary removeObjectForKey:cityToRemove];
-    [self.feelsLikeStringDictionary removeObjectForKey:cityToRemove];
-    [self.weatherEffectsDictionary removeObjectForKey:cityToRemove];
     
     // update number of keys
-    self.numCities = [self.weatherDataDictionary count];
+    self.numCities = [self.citiesArray count];
     
     // notify controller that a city has been removed
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DataReceived"
@@ -169,54 +124,38 @@
     }
     else
     {
+        NSArray *parsedJson =  [rawParsedJson objectForKey:@"current_observation"];
+        
         // create the city object
         NSString *cityName = [[results valueForKey:@"display_location"] valueForKey:@"city"];
         NSString *zipName = [[results valueForKey:@"display_location"] valueForKey:@"zip"];
         ESLCityData *city = [[ESLCityData alloc] initWithCity:cityName andZip:zipName];
         
-        // key for dictionaries
-        NSString *cityKey = city.cityName;
-        //[self.zipCodesArray addObject:[[parsedJson valueForKey:@"display_location"] valueForKey:@"zip"]];
+        // create the weather object
+        ESLWeatherData *weatherForCity = [[ESLWeatherData alloc] init];
+        weatherForCity.condition = [parsedJson valueForKey:@"weather"];
+        weatherForCity.temperature = [parsedJson valueForKey:@"temp_f"];
         
-        
-        // add data to dictionary
-        [_weatherDataDictionary setObject:rawParsedJson forKey:cityKey];
-        // update number of keys
-        _numCities = [_weatherDataDictionary count];
-        
-        NSArray *parsedJson =  [[_weatherDataDictionary objectForKey:city] objectForKey:@"current_observation"];
-        city = [[parsedJson valueForKey:@"display_location"] valueForKey:@"city"];
-        
-        // Store the city
-        [self.citiesArray addObject:city];
-                
-        // Store the zip
-        [self.zipCodesArray addObject:[[parsedJson valueForKey:@"display_location"] valueForKey:@"zip"]];
-        
-        // Store the weather condition
-        [self.conditionsDictionary setObject:[parsedJson valueForKey:@"weather"] forKey:cityKey];
-        
-        // Store the temperature
-        [self.temperatureStringDictionary setObject:[parsedJson valueForKey:@"temp_f"] forKey:cityKey];
-
-        // Store the icon url
         NSString *iconURL = ICON_URL;
         NSString *iconType = [parsedJson valueForKey:@"icon"];
         iconURL = [iconURL stringByAppendingString:iconType];
         iconURL = [iconURL stringByAppendingString:GIF_EXTENSION];
-        [self.iconDictionary setObject:iconURL forKey:cityKey];
+        weatherForCity.icon = iconURL;
         
-        // Store the wind condition
-        [self.windStringDictionary setObject:[parsedJson valueForKey:@"wind_string"] forKey:cityKey];
+        weatherForCity.wind = [parsedJson valueForKey:@"wind_string"];
+        weatherForCity.humidity = [parsedJson valueForKey:@"relative_humidity"];
+        weatherForCity.feelsLike = [parsedJson valueForKey:@"feelslike_f"];
+        weatherForCity.weatherEffect = [parsedJson valueForKey:@"icon"];
         
-        // Store the humidity
-        [self.humidityStringDictionary setObject:[parsedJson valueForKey:@"relative_humidity"] forKey:cityKey];
+        // assign the weather object to the city
+        city.weatherData = weatherForCity;
         
-        // Store the "feels like"
-        [self.feelsLikeStringDictionary setObject:[parsedJson valueForKey:@"feelslike_f"] forKey:cityKey];
-        
-        // Store the weather effect
-        [self.weatherEffectsDictionary setObject:[parsedJson valueForKey:@"icon"] forKey:cityKey];
+        // add city to the array
+        [self.citiesArray addObject:city];
+        NSLog(@"Cities Array count: %ld", [self.citiesArray count]);
+
+        // update number of keys
+        self.numCities = [self.citiesArray count];
         
         // Notify the controller that the data has been updated
         [[NSNotificationCenter defaultCenter] postNotificationName:@"DataReceived"

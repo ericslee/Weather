@@ -84,9 +84,13 @@
     // animate the MBProgressHUD
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    // store the cities to refresh
-    self.tempCities = [[NSMutableArray alloc] initWithArray:self.mainModel.zipCodesArray];
-    _mainModel = [[ESLWeatherDataManager alloc] initRefreshData:self.tempCities];
+    // store the zip codes to refresh
+    NSMutableArray *zipCodesTempArray = [[NSMutableArray alloc] init];
+    for(ESLCityData *city in self.mainModel.citiesArray)
+    {
+        [zipCodesTempArray insertObject:city.zipCode atIndex:0];
+    }
+    _mainModel = [[ESLWeatherDataManager alloc] initRefreshData:zipCodesTempArray];
     
     // reload the table
     [self.tableView reloadData];
@@ -219,16 +223,17 @@
         // get reference to UI elements on cell
         UILabel *cityLabel = (id)[cell viewWithTag:1];
         // set the text based on the section index
-        NSString *cellCity = [NSString stringWithFormat:@"%@", [self.mainModel.citiesArray objectAtIndex:index]];
+        ESLCityData *currentCity = [self.mainModel.citiesArray objectAtIndex:index];
+        NSString *cellCity = currentCity.cityName;
         cityLabel.text = cellCity;
         
         UILabel *temperatureLabel = (id)[cell viewWithTag:3];
-        NSString *temperatureString = [NSString stringWithFormat:@"%@°", [self.mainModel.temperatureStringDictionary objectForKey:cellCity]];
+        NSString *temperatureString = currentCity.weatherData.temperature;
         NSInteger temperatureInteger = [temperatureString integerValue];
         temperatureLabel.text = [NSString stringWithFormat:@"%ld°", temperatureInteger];
         
         UIImageView *conditionImage = (id)[cell viewWithTag:4];
-        conditionImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.mainModel.iconDictionary objectForKey:cellCity]]]];
+        conditionImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:currentCity.weatherData.icon]]];
         
     }
     return cell;
@@ -252,16 +257,17 @@
     ESLDetailsViewController *vc =[segue destinationViewController];
     
     // set properties in the controller that store the data at the current index
-    vc.city = [NSString stringWithFormat:@"%@", [self.mainModel.citiesArray objectAtIndex:self.mainModel.currentIndex]];
-    vc.condition = [NSString stringWithFormat:@"%@", [self.mainModel.conditionsDictionary objectForKey:vc.city]];
-    NSString *temperatureString = [NSString stringWithFormat:@"%@°", [self.mainModel.temperatureStringDictionary objectForKey:vc.city]];
+    ESLCityData *currentCity = [self.mainModel.citiesArray objectAtIndex:self.mainModel.currentIndex];
+    vc.city = currentCity.cityName;
+    vc.condition = currentCity.weatherData.condition;
+    NSString *temperatureString = currentCity.weatherData.temperature;
     NSInteger temperatureInteger = [temperatureString integerValue];
     vc.temperature = [NSString stringWithFormat:@"%ld°", temperatureInteger];
-    vc.icon = [NSString stringWithFormat:@"%@", [self.mainModel.iconDictionary objectForKey:vc.city]];
-    vc.windString = [NSString stringWithFormat:@"Wind: %@", [self.mainModel.windStringDictionary objectForKey:vc.city]];
-    vc.humidityString = [NSString stringWithFormat:@"Humidity: %@", [self.mainModel.humidityStringDictionary objectForKey:vc.city]];
-    vc.feelsLike = [NSString stringWithFormat:@"Feels like: %@°", [self.mainModel.feelsLikeStringDictionary objectForKey:vc.city]];
-    vc.weatherEffect = [NSString stringWithFormat:@"%@", [self.mainModel.weatherEffectsDictionary objectForKey:vc.city]];
+    vc.icon = currentCity.weatherData.icon;
+    vc.windString = [NSString stringWithFormat:@"Wind: %@", currentCity.weatherData.wind];
+    vc.humidityString = [NSString stringWithFormat:@"Humidity: %@", currentCity.weatherData.humidity];
+    vc.feelsLike = [NSString stringWithFormat:@"Feels like: %@", currentCity.weatherData.feelsLike];
+    vc.weatherEffect = currentCity.weatherData.weatherEffect;
 }
 
 #pragma mark - Notifications
