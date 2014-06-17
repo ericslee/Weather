@@ -8,10 +8,6 @@
 
 #import "ESLViewController.h"
 
-@interface ESLViewController ()
-
-@end
-
 @implementation ESLViewController
 
 // lazy instantiation for main model
@@ -102,7 +98,7 @@
     [refreshControl endRefreshing];
 }
 
-
+#pragma mark - Adding city
 - (IBAction)addCity:(id)sender
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add City" message:@"City, State OR Zip Code" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
@@ -163,6 +159,18 @@
         return [str length] && isnumber([str characterAtIndex:0]);
     else
         return NO;
+}
+
+#pragma mark - Removing cities
+// for swipe to remove
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here to do what you want when you hit delete
+        //[itemArray removeObjectAtIndex:[indexPath row]];
+        //[tableView reloadData];
+        NSLog(@"Remove city from swipe");
+        [self.mainModel removeCityFromModel:[self.mainModel.citiesArray objectAtIndex:[indexPath row]]];
+    }
 }
 
 #pragma mark - Table view data source
@@ -232,17 +240,6 @@
     self.mainModel.currentIndex = [indexPath section];
     // advance to the next view
     [self performSegueWithIdentifier:@"Details" sender:self];
-}
-
-// for swipe to remove
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here to do what you want when you hit delete
-        //[itemArray removeObjectAtIndex:[indexPath row]];
-        //[tableView reloadData];
-         NSLog(@"Remove city from swipe");
-        [self.mainModel removeCityFromModel:[self.mainModel.citiesArray objectAtIndex:[indexPath row]]];
-    }
 }
 
 #pragma mark - Navigation

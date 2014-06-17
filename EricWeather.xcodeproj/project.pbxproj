@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		486566F3194FC1DB00C2BE1A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 486566F2194FC1DB00C2BE1A /* CoreData.framework */; };
 		488C370F19476CFF00F5BE9C /* ESLBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */; };
 		488C37111947732100F5BE9C /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488C37101947732100F5BE9C /* SpriteKit.framework */; };
 		488C37141947736F00F5BE9C /* RainEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 488C37121947736F00F5BE9C /* RainEffect.sks */; };
@@ -26,6 +27,7 @@
 		48C314D1194912D2007B049E /* Cloud01.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314D0194912D2007B049E /* Cloud01.png */; };
 		48C314D3194917FF007B049E /* Cloud02.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314D2194917FF007B049E /* Cloud02.png */; };
 		48C314D519491B4A007B049E /* Cloud03.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314D419491B4A007B049E /* Cloud03.png */; };
+		48C582AD194BB04400FA6D37 /* ESLPersistencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C582AC194BB04400FA6D37 /* ESLPersistencyManager.m */; };
 		48EAC2191941380C00B0A30A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC2181941380C00B0A30A /* Foundation.framework */; };
 		48EAC21B1941380C00B0A30A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC21A1941380C00B0A30A /* CoreGraphics.framework */; };
 		48EAC21D1941380C00B0A30A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC21C1941380C00B0A30A /* UIKit.framework */; };
@@ -57,6 +59,7 @@
 /* Begin PBXFileReference section */
 		3FC9A7F56C784C1AB7DA275B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		437C599E6B924FDF8379B922 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		486566F2194FC1DB00C2BE1A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		488C370D19476CFF00F5BE9C /* ESLBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLBackgroundLayer.h; path = ../ESLBackgroundLayer.h; sourceTree = "<group>"; };
 		488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESLBackgroundLayer.m; path = ../ESLBackgroundLayer.m; sourceTree = "<group>"; };
 		488C37101947732100F5BE9C /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
@@ -66,8 +69,8 @@
 		488C37171947743700F5BE9C /* ESLDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLDetailsViewController.m; sourceTree = "<group>"; };
 		488C371C19477EFB00F5BE9C /* Cloudy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Cloudy.sks; path = ../Cloudy.sks; sourceTree = "<group>"; };
 		488C371D19477EFB00F5BE9C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../spark.png; sourceTree = "<group>"; };
-		48B1241F1942316100835400 /* ESLWebRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESLWebRequestManager.h; sourceTree = "<group>"; };
-		48B124201942316100835400 /* ESLWebRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLWebRequestManager.m; sourceTree = "<group>"; };
+		48B1241F1942316100835400 /* ESLWebRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLWebRequestManager.h; path = EricWeather/ESLWebRequestManager.h; sourceTree = "<group>"; };
+		48B124201942316100835400 /* ESLWebRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESLWebRequestManager.m; path = EricWeather/ESLWebRequestManager.m; sourceTree = "<group>"; };
 		48B12422194231CE00835400 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = EricWeather/Reachability.h; sourceTree = "<group>"; };
 		48B12423194231CE00835400 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = EricWeather/Reachability.m; sourceTree = "<group>"; };
 		48B124251942321400835400 /* ESLWeatherDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLWeatherDataManager.h; path = ../ESLWeatherDataManager.h; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 		48C314D0194912D2007B049E /* Cloud01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud01.png; sourceTree = "<group>"; };
 		48C314D2194917FF007B049E /* Cloud02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud02.png; sourceTree = "<group>"; };
 		48C314D419491B4A007B049E /* Cloud03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud03.png; sourceTree = "<group>"; };
+		48C582AB194BB04400FA6D37 /* ESLPersistencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLPersistencyManager.h; path = EricWeather/ESLPersistencyManager.h; sourceTree = "<group>"; };
+		48C582AC194BB04400FA6D37 /* ESLPersistencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESLPersistencyManager.m; path = EricWeather/ESLPersistencyManager.m; sourceTree = "<group>"; };
 		48EAC2151941380C00B0A30A /* EricWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EricWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EAC2181941380C00B0A30A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		48EAC21A1941380C00B0A30A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -109,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				486566F3194FC1DB00C2BE1A /* CoreData.framework in Frameworks */,
 				488C37111947732100F5BE9C /* SpriteKit.framework in Frameworks */,
 				48B1243219425ED600835400 /* SystemConfiguration.framework in Frameworks */,
 				48B1243019425ECB00835400 /* MobileCoreServices.framework in Frameworks */,
@@ -166,8 +172,12 @@
 		48C314CD1947B6B9007B049E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				48C582AB194BB04400FA6D37 /* ESLPersistencyManager.h */,
+				48C582AC194BB04400FA6D37 /* ESLPersistencyManager.m */,
 				48B12422194231CE00835400 /* Reachability.h */,
 				48B12423194231CE00835400 /* Reachability.m */,
+				48B1241F1942316100835400 /* ESLWebRequestManager.h */,
+				48B124201942316100835400 /* ESLWebRequestManager.m */,
 				48C314CA1947B6AD007B049E /* MBProgressHUD.h */,
 				48C314CB1947B6AD007B049E /* MBProgressHUD.m */,
 			);
@@ -198,6 +208,7 @@
 		48EAC2171941380C00B0A30A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				486566F2194FC1DB00C2BE1A /* CoreData.framework */,
 				488C37101947732100F5BE9C /* SpriteKit.framework */,
 				48B1243119425ED600835400 /* SystemConfiguration.framework */,
 				48B1242F19425ECB00835400 /* MobileCoreServices.framework */,
@@ -222,8 +233,6 @@
 				48EAC2281941380C00B0A30A /* ESLAppDelegate.m */,
 				488C370D19476CFF00F5BE9C /* ESLBackgroundLayer.h */,
 				488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */,
-				48B1241F1942316100835400 /* ESLWebRequestManager.h */,
-				48B124201942316100835400 /* ESLWebRequestManager.m */,
 				48C314CD1947B6B9007B049E /* Helpers */,
 				48EAC2331941380C00B0A30A /* Images.xcassets */,
 				48EAC21F1941380C00B0A30A /* Supporting Files */,
@@ -416,6 +425,7 @@
 				48C314CC1947B6AD007B049E /* MBProgressHUD.m in Sources */,
 				488C37181947743700F5BE9C /* ESLDetailsViewController.m in Sources */,
 				48B124211942316100835400 /* ESLWebRequestManager.m in Sources */,
+				48C582AD194BB04400FA6D37 /* ESLPersistencyManager.m in Sources */,
 				48EAC2251941380C00B0A30A /* main.m in Sources */,
 				48B12424194231CE00835400 /* Reachability.m in Sources */,
 				48EAC2291941380C00B0A30A /* ESLAppDelegate.m in Sources */,

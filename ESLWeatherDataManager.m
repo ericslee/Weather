@@ -16,11 +16,13 @@
     self = [super init];
     
     // init dictionary
-    _weatherDataDictionary = [[NSMutableDictionary alloc] init];
+    self.weatherDataDictionary = [[NSMutableDictionary alloc] init];
     
     // init mutable arrays
     self.citiesArray = [[NSMutableArray alloc] init];
     self.zipCodesArray = [[NSMutableArray alloc] init];
+    
+    //encapulate
     
     // init other data dictionaries
     self.conditionsDictionary = [[NSMutableDictionary alloc] init];
@@ -50,6 +52,8 @@
 - (id)initRefreshData:(NSMutableArray *)citiesToReload
 {
     self = [super init];
+    
+    // if self check
     
     // init dictionary
     _weatherDataDictionary = [[NSMutableDictionary alloc] init];
@@ -123,7 +127,7 @@
                                                         object:self];
 }
 
-#pragma mark - Delegates for Weather Data
+#pragma mark - Connection delegates
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -205,6 +209,7 @@
         // Store the weather effect
         [self.weatherEffectsDictionary setObject:[parsedJson valueForKey:@"icon"] forKey:city];
         
+        // Notify the controller that the data has been updated
         [[NSNotificationCenter defaultCenter] postNotificationName:@"DataReceived"
                                                              object:self];
     }
