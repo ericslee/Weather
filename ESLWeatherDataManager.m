@@ -15,11 +15,12 @@
 {
     self = [super init];
     
+    // init mutable arrays
+    self.citiesArray = [[NSMutableArray alloc] init];
+    
     // init dictionary
     self.weatherDataDictionary = [[NSMutableDictionary alloc] init];
     
-    // init mutable arrays
-    self.citiesArray = [[NSMutableArray alloc] init];
     self.zipCodesArray = [[NSMutableArray alloc] init];
     
     //encapulate
@@ -168,10 +169,18 @@
     }
     else
     {
-        NSString *city = [[results valueForKey:@"display_location"] valueForKey:@"city"];
+        // create the city object
+        NSString *cityName = [[results valueForKey:@"display_location"] valueForKey:@"city"];
+        NSString *zipName = [[results valueForKey:@"display_location"] valueForKey:@"zip"];
+        ESLCityData *city = [[ESLCityData alloc] initWithCity:cityName andZip:zipName];
+        
+        // key for dictionaries
+        NSString *cityKey = city.cityName;
+        //[self.zipCodesArray addObject:[[parsedJson valueForKey:@"display_location"] valueForKey:@"zip"]];
+        
         
         // add data to dictionary
-        [_weatherDataDictionary setObject:rawParsedJson forKey:city];
+        [_weatherDataDictionary setObject:rawParsedJson forKey:cityKey];
         // update number of keys
         _numCities = [_weatherDataDictionary count];
         
@@ -185,29 +194,29 @@
         [self.zipCodesArray addObject:[[parsedJson valueForKey:@"display_location"] valueForKey:@"zip"]];
         
         // Store the weather condition
-        [self.conditionsDictionary setObject:[parsedJson valueForKey:@"weather"] forKey:city];
+        [self.conditionsDictionary setObject:[parsedJson valueForKey:@"weather"] forKey:cityKey];
         
         // Store the temperature
-        [self.temperatureStringDictionary setObject:[parsedJson valueForKey:@"temp_f"] forKey:city];
+        [self.temperatureStringDictionary setObject:[parsedJson valueForKey:@"temp_f"] forKey:cityKey];
 
         // Store the icon url
         NSString *iconURL = ICON_URL;
         NSString *iconType = [parsedJson valueForKey:@"icon"];
         iconURL = [iconURL stringByAppendingString:iconType];
         iconURL = [iconURL stringByAppendingString:GIF_EXTENSION];
-        [self.iconDictionary setObject:iconURL forKey:city];
+        [self.iconDictionary setObject:iconURL forKey:cityKey];
         
         // Store the wind condition
-        [self.windStringDictionary setObject:[parsedJson valueForKey:@"wind_string"] forKey:city];
+        [self.windStringDictionary setObject:[parsedJson valueForKey:@"wind_string"] forKey:cityKey];
         
         // Store the humidity
-        [self.humidityStringDictionary setObject:[parsedJson valueForKey:@"relative_humidity"] forKey:city];
+        [self.humidityStringDictionary setObject:[parsedJson valueForKey:@"relative_humidity"] forKey:cityKey];
         
         // Store the "feels like"
-        [self.feelsLikeStringDictionary setObject:[parsedJson valueForKey:@"feelslike_f"] forKey:city];
+        [self.feelsLikeStringDictionary setObject:[parsedJson valueForKey:@"feelslike_f"] forKey:cityKey];
         
         // Store the weather effect
-        [self.weatherEffectsDictionary setObject:[parsedJson valueForKey:@"icon"] forKey:city];
+        [self.weatherEffectsDictionary setObject:[parsedJson valueForKey:@"icon"] forKey:cityKey];
         
         // Notify the controller that the data has been updated
         [[NSNotificationCenter defaultCenter] postNotificationName:@"DataReceived"

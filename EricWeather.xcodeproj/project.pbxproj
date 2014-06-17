@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		486566F3194FC1DB00C2BE1A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 486566F2194FC1DB00C2BE1A /* CoreData.framework */; };
+		487751531950C07D00E9406A /* ESLWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 487751521950C07D00E9406A /* ESLWeatherData.m */; };
+		487751591950C0F900E9406A /* ESLCityData.m in Sources */ = {isa = PBXBuildFile; fileRef = 487751581950C0F900E9406A /* ESLCityData.m */; };
 		488C370F19476CFF00F5BE9C /* ESLBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */; };
 		488C37111947732100F5BE9C /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488C37101947732100F5BE9C /* SpriteKit.framework */; };
 		488C37141947736F00F5BE9C /* RainEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 488C37121947736F00F5BE9C /* RainEffect.sks */; };
@@ -60,6 +62,10 @@
 		3FC9A7F56C784C1AB7DA275B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		437C599E6B924FDF8379B922 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		486566F2194FC1DB00C2BE1A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		487751511950C07D00E9406A /* ESLWeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESLWeatherData.h; sourceTree = "<group>"; };
+		487751521950C07D00E9406A /* ESLWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLWeatherData.m; sourceTree = "<group>"; };
+		487751571950C0F900E9406A /* ESLCityData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESLCityData.h; sourceTree = "<group>"; };
+		487751581950C0F900E9406A /* ESLCityData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLCityData.m; sourceTree = "<group>"; };
 		488C370D19476CFF00F5BE9C /* ESLBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLBackgroundLayer.h; path = ../ESLBackgroundLayer.h; sourceTree = "<group>"; };
 		488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESLBackgroundLayer.m; path = ../ESLBackgroundLayer.m; sourceTree = "<group>"; };
 		488C37101947732100F5BE9C /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
@@ -145,6 +151,10 @@
 			children = (
 				48B124251942321400835400 /* ESLWeatherDataManager.h */,
 				48B124261942321400835400 /* ESLWeatherDataManager.m */,
+				487751571950C0F900E9406A /* ESLCityData.h */,
+				487751581950C0F900E9406A /* ESLCityData.m */,
+				487751511950C07D00E9406A /* ESLWeatherData.h */,
+				487751521950C07D00E9406A /* ESLWeatherData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -420,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				488C370F19476CFF00F5BE9C /* ESLBackgroundLayer.m in Sources */,
+				487751531950C07D00E9406A /* ESLWeatherData.m in Sources */,
 				48EAC2321941380C00B0A30A /* ESLViewController.m in Sources */,
 				48B124271942321400835400 /* ESLWeatherDataManager.m in Sources */,
 				48C314CC1947B6AD007B049E /* MBProgressHUD.m in Sources */,
@@ -429,6 +440,7 @@
 				48EAC2251941380C00B0A30A /* main.m in Sources */,
 				48B12424194231CE00835400 /* Reachability.m in Sources */,
 				48EAC2291941380C00B0A30A /* ESLAppDelegate.m in Sources */,
+				487751591950C0F900E9406A /* ESLCityData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

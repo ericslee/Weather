@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ESLCityData.h"
 
 #define SFO_URL @"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/94107.json"
 #define HTTP_REQUEST_URL @"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/"
