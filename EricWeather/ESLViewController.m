@@ -15,8 +15,13 @@
 {
     if (!_mainModel) {
         _mainModel = [[ESLWeatherDataManager alloc] initDefault];
+        
+        // add SF as the default initial city
         [self httpRequestWithURL:SFO_URL];
     }
+    
+    // set current location based on city
+    self.currentLocation = @"94107";
     
     return _mainModel;
 }
@@ -36,7 +41,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     // set the background
-    UIImage *backgroundImage = [UIImage imageNamed:@"bluesky_blur"];
+    UIImage *backgroundImage = [UIImage imageNamed:BACKGROUND_IMAGE_URL];
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:backgroundImage];
     
     // remove separator lines
@@ -60,9 +65,6 @@
         
         [self.view.layer addSublayer:self.maskLayer];
     }
-    
-    // register for notifications
-    [self registerForNotifications];
     
     // create a UIRefreshControl for reloading the data in the table with new facts
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc]
@@ -91,7 +93,23 @@
     {
         [zipCodesTempArray addObject:city.zipCode];
     }
-    _mainModel = [[ESLWeatherDataManager alloc] initRefreshData:zipCodesTempArray];
+    //_mainModel = [[ESLWeatherDataManager alloc] initRefreshData:zipCodesTempArray];
+    
+    self.mainModel.citiesArray = [[NSMutableArray alloc] init];
+    //[self.mainModel.citiesArray removeAllObjects];
+    
+    // add all cities again with updated data
+    for(NSString *city in zipCodesTempArray)
+    {
+        NSString *newCity = city;
+        NSString *httpRequestURL = HTTP_REQUEST_URL;
+        httpRequestURL = [httpRequestURL stringByAppendingString:newCity];
+        httpRequestURL = [httpRequestURL stringByAppendingString:JSON_EXTENSION];
+        
+        [self httpRequestWithURL:httpRequestURL];
+        //[self addCityToModel:httpRequestURL];
+    }
+
     
     // reload the table
     [self.tableView reloadData];
@@ -124,7 +142,7 @@
     if (buttonIndex == 1) {
         // Add city if valid
         
-        NSString *httpRequestURL = @"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/";
+        NSString *httpRequestURL = HTTP_REQUEST_URL;
     
         // if entry was city
         if(![self hasLeadingNumberInString:detailString])
@@ -140,7 +158,7 @@
             httpRequestURL = [httpRequestURL stringByAppendingString:state];
             httpRequestURL = [httpRequestURL stringByAppendingString:backslash];
             httpRequestURL = [httpRequestURL stringByAppendingString:modifiedCityString];
-            NSString *jsonTag = @".json";
+            NSString *jsonTag = JSON_EXTENSION;
             httpRequestURL = [httpRequestURL stringByAppendingString:jsonTag];
         }
         // else if it was a zip code
@@ -148,14 +166,12 @@
         {
             NSString *newCity = detailString;
             httpRequestURL = [httpRequestURL stringByAppendingString:newCity];
-            NSString *jsonTag = @".json";
+            NSString *jsonTag = JSON_EXTENSION;
             httpRequestURL = [httpRequestURL stringByAppendingString:jsonTag];
         }
         
-        [self httpRequestWithURL:httpRequestURL];
-        
         // add city to the model
-        //[self.mainModel addCityToModel:httpRequestURL];
+        [self httpRequestWithURL:httpRequestURL];
     }
 }
 
@@ -227,6 +243,9 @@
         NSArray *parsedJson =  [rawParsedJson objectForKey:CURRENT_OBSERVATION_KEY];
         
         [self.mainModel addCityToModel:parsedJson];
+        
+        // reload the data
+        [self.tableView reloadData];
     }
 }
 
@@ -234,11 +253,8 @@
 // for swipe to remove
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here to do what you want when you hit delete
-        //[itemArray removeObjectAtIndex:[indexPath row]];
-        //[tableView reloadData];
-        NSLog(@"Remove city from swipe");
-        [self.mainModel removeCityFromModel:[self.mainModel.citiesArray objectAtIndex:[indexPath row]]];
+        [self.mainModel removeCityFromModel:[indexPath section]];
+        [self.tableView reloadData];
     }
 }
 
@@ -277,7 +293,6 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     // get index of the cell
-    //NSInteger index = [indexPath row];
     NSInteger index = [indexPath section];
     
     // only fill in UI elements if data as been received
@@ -299,6 +314,11 @@
         UIImageView *conditionImage = (id)[cell viewWithTag:4];
         conditionImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:currentCity.weatherData.icon]]];
         
+        // highlight cell if it is the user's location
+        if ([currentCity.zipCode isEqualToString:self.currentLocation]) {
+            backgroundView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+        }
+        
     }
     return cell;
 }
@@ -306,7 +326,7 @@
 // act on cell selection
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.mainModel.currentIndex = [indexPath section];
+    self.currentIndex = [indexPath section];
     // advance to the next view
     [self performSegueWithIdentifier:@"Details" sender:self];
 }
@@ -321,7 +341,7 @@
     ESLDetailsViewController *vc =[segue destinationViewController];
     
     // set properties in the controller that store the data at the current index
-    ESLCityData *currentCity = [self.mainModel.citiesArray objectAtIndex:self.mainModel.currentIndex];
+    ESLCityData *currentCity = [self.mainModel.citiesArray objectAtIndex:self.currentIndex];
     vc.city = currentCity.cityName;
     vc.condition = currentCity.weatherData.condition;
     NSString *temperatureString = currentCity.weatherData.temperature;
@@ -332,26 +352,6 @@
     vc.humidityString = [NSString stringWithFormat:@"Humidity: %@", currentCity.weatherData.humidity];
     vc.feelsLike = [NSString stringWithFormat:@"Feels like: %@", currentCity.weatherData.feelsLike];
     vc.weatherEffect = currentCity.weatherData.weatherEffect;
-}
-
-#pragma mark - Notifications
-
-// Notifications
-- (void)registerForNotifications
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateWeatherView:)
-                                                 name:@"DataReceived"
-                                               object:nil];
-}
-
-// notifcation function to update the table view cells
-- (void)updateWeatherView:(NSNotification *)notification
-{
-    NSLog(@"Data updated");
-    
-    // reload the data
-    [self.tableView reloadData];
 }
 
 @end

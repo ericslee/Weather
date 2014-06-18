@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "ESLCityData.h"
 
+// CONSTANTS
+
 #define HTTP_REQUEST_URL @"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/"
 #define JSON_EXTENSION @".json"
 #define ICON_URL @"http://icons.wxug.com/i/c/i/"
@@ -29,22 +31,14 @@
 // stores all cities in list to maintain ordering
 @property (nonatomic, strong) NSMutableArray *citiesArray;
 
-// current cell index
-@property (nonatomic) NSInteger currentIndex;
-
-
-
 // default initializer that loads S.F. data
 - (id)initDefault;
-
-// refreshes data for all cities added
-- (id)initRefreshData:(NSMutableArray *)citiesToReload;
 
 // add city to model
 - (void)addCityToModel:(NSArray *)parsedJson;
 
 // remove swiped city from model
-- (void)removeCityFromModel:(NSString *)cityToRemove;
+- (void)removeCityFromModel:(NSInteger)index;
 
 
 @end
