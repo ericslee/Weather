@@ -15,23 +15,13 @@
 {
     self = [super init];
     
-    // init mutable arrays
-    self.citiesArray = [[NSMutableArray alloc] init];
-    
-    //encapulate
-    
-    // perform a HTTP web request and then set our properties
-    // default example - San Francisco
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:
-                                [NSURL URLWithString:SFO_URL]];
-    NSURLConnection *theConnection=[[NSURLConnection alloc]
-                                    initWithRequest:theRequest delegate:self];
-    if(theConnection){
-        _currentCityWeatherData = [[NSMutableData alloc] init];
-    } else {
-        NSLog(@"failed");
+    if (self) {
+        // init mutable arrays
+        self.citiesArray = [[NSMutableArray alloc] init];
+        
+        // add SF as the default initial city
+        [self addCityToModel:SFO_URL];
     }
-    
     return self;
 }
 
@@ -40,20 +30,22 @@
 {
     self = [super init];
     
-    // reset mutable array
-    self.citiesArray = [[NSMutableArray alloc] init];
-    
-    // add all cities again with updated data
-    for(NSString *city in citiesToReload)
-    {
-        NSString *newCity = city;
-        NSString *httpRequestURL = HTTP_REQUEST_URL;
-        httpRequestURL = [httpRequestURL stringByAppendingString:newCity];
-        httpRequestURL = [httpRequestURL stringByAppendingString:JSON_EXTENSION];
+    if (self) {
+        // empty cities array
+        //[self.citiesArray removeAllObjects];
+        self.citiesArray = [[NSMutableArray alloc] init];
         
-        [self addCityToModel:httpRequestURL];
+        // add all cities again with updated data
+        for(NSString *city in citiesToReload)
+        {
+            NSString *newCity = city;
+            NSString *httpRequestURL = HTTP_REQUEST_URL;
+            httpRequestURL = [httpRequestURL stringByAppendingString:newCity];
+            httpRequestURL = [httpRequestURL stringByAppendingString:JSON_EXTENSION];
+            
+            [self addCityToModel:httpRequestURL];
+        }
     }
-    
     return self;
 }
 
@@ -74,9 +66,6 @@
 {
     // remove city from array
     [self.citiesArray removeObject:cityToRemove];
-    
-    // update number of keys
-    self.numCities = [self.citiesArray count];
     
     // notify controller that a city has been removed
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DataReceived"
@@ -153,9 +142,6 @@
         // add city to the array
         [self.citiesArray addObject:city];
         NSLog(@"Cities Array count: %ld", [self.citiesArray count]);
-
-        // update number of keys
-        self.numCities = [self.citiesArray count];
         
         // Notify the controller that the data has been updated
         [[NSNotificationCenter defaultCenter] postNotificationName:@"DataReceived"

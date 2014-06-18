@@ -88,7 +88,7 @@
     NSMutableArray *zipCodesTempArray = [[NSMutableArray alloc] init];
     for(ESLCityData *city in self.mainModel.citiesArray)
     {
-        [zipCodesTempArray insertObject:city.zipCode atIndex:0];
+        [zipCodesTempArray addObject:city.zipCode];
     }
     _mainModel = [[ESLWeatherDataManager alloc] initRefreshData:zipCodesTempArray];
     
@@ -183,8 +183,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    NSLog(@"%ld", _mainModel.numCities);
-    return self.mainModel.numCities;
+    return [self.mainModel.citiesArray count];
 }
 
 // columns

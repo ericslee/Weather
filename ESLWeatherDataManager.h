@@ -20,9 +20,6 @@
 // weather data for most recent city
 @property (nonatomic, strong) NSMutableData *currentCityWeatherData;
 
-// number of cities in list (and therefore number of keys)
-@property (nonatomic) NSInteger numCities;
-
 // stores all cities in list to maintain ordering
 @property (nonatomic, strong) NSMutableArray *citiesArray;
 
