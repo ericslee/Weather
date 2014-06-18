@@ -52,30 +52,30 @@
         [self.view.layer insertSublayer:bgLayer atIndex:0];
         
         // effect
-        CAEmitterLayer *emitterLayer = [CAEmitterLayer layer]; // 1
+        CAEmitterLayer *emitterLayer = [CAEmitterLayer layer];
         emitterLayer.backgroundColor = [[UIColor colorWithWhite:0.0 alpha:0.0] CGColor];
-        emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.origin.y); // 2
-        emitterLayer.emitterZPosition = 10; // 3
-        emitterLayer.emitterSize = CGSizeMake(self.view.bounds.size.width, 0); // 4
-        emitterLayer.emitterShape = kCAEmitterLayerLine; // 5
+        emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.origin.y);
+        emitterLayer.emitterZPosition = 10;
+        emitterLayer.emitterSize = CGSizeMake(self.view.bounds.size.width, 0);
+        emitterLayer.emitterShape = kCAEmitterLayerLine;
         
-        CAEmitterCell *emitterCell = [CAEmitterCell emitterCell]; // 6
-        emitterCell.scale = 0.1; // 7
-        emitterCell.scaleRange = 0.05; // 8
+        CAEmitterCell *emitterCell = [CAEmitterCell emitterCell];
+        emitterCell.scale = 0.1;
+        emitterCell.scaleRange = 0.05;
         emitterCell.emissionLongitude = 254.6;
         emitterCell.emissionRange = 0.2;
-        emitterCell.lifetime = 8.0; // 10
-        emitterCell.birthRate = 150; // 11
-        emitterCell.velocity = 543.66; // 12
-        emitterCell.velocityRange = 150; // 13
-        emitterCell.yAcceleration = 150; // 14
+        emitterCell.lifetime = 8.0;
+        emitterCell.birthRate = 150;
+        emitterCell.velocity = 543.66;
+        emitterCell.velocityRange = 150;
+        emitterCell.yAcceleration = 150;
         emitterCell.alphaRange = 0.0;
         emitterCell.color = [[UIColor colorWithRed:0.54 green:0.57 blue:1.0 alpha:0.8] CGColor];
         
-        emitterCell.contents = (id)[[UIImage imageNamed:@"raindrop.png"] CGImage]; // 15
-        emitterLayer.emitterCells = [NSArray arrayWithObject:emitterCell]; // 16
+        emitterCell.contents = (id)[[UIImage imageNamed:@"raindrop.png"] CGImage];
+        emitterLayer.emitterCells = [NSArray arrayWithObject:emitterCell];
         
-        [self.view.layer addSublayer:emitterLayer]; // 17
+        [self.view.layer addSublayer:emitterLayer];
         
         // font
         _cityLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
@@ -98,24 +98,24 @@
         // effect
         CAEmitterLayer *emitterLayer = [CAEmitterLayer layer];
         emitterLayer.backgroundColor = [[UIColor colorWithWhite:0.0 alpha:0.0] CGColor];
-        emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.origin.y); // 2
+        emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.origin.y);
         emitterLayer.emitterZPosition = 10; // 3
-        emitterLayer.emitterSize = CGSizeMake(self.view.bounds.size.width, 0); // 4
-        emitterLayer.emitterShape = kCAEmitterLayerLine; // 5
+        emitterLayer.emitterSize = CGSizeMake(self.view.bounds.size.width, 0);
+        emitterLayer.emitterShape = kCAEmitterLayerLine;
         
-        CAEmitterCell *emitterCell = [CAEmitterCell emitterCell]; // 6
-        emitterCell.scale = 0.1; // 7
-        emitterCell.scaleRange = 0.2; // 8
-        emitterCell.emissionRange = (CGFloat)M_PI_2; // 9
-        emitterCell.lifetime = 5.0; // 10
-        emitterCell.birthRate = 20; // 11
-        emitterCell.velocity = 200; // 12
-        emitterCell.velocityRange = 50; // 13
-        emitterCell.yAcceleration = 250; // 14
+        CAEmitterCell *emitterCell = [CAEmitterCell emitterCell];
+        emitterCell.scale = 0.1;
+        emitterCell.scaleRange = 0.2;
+        emitterCell.emissionRange = (CGFloat)M_PI_2;
+        emitterCell.lifetime = 5.0;
+        emitterCell.birthRate = 20;
+        emitterCell.velocity = 200;
+        emitterCell.velocityRange = 50;
+        emitterCell.yAcceleration = 250;
         
-        emitterCell.contents = (id)[[UIImage imageNamed:@"spark.png"] CGImage]; // 15
-        emitterLayer.emitterCells = [NSArray arrayWithObject:emitterCell]; // 16
-        [self.view.layer addSublayer:emitterLayer]; // 17
+        emitterCell.contents = (id)[[UIImage imageNamed:@"spark.png"] CGImage];
+        emitterLayer.emitterCells = [NSArray arrayWithObject:emitterCell];
+        [self.view.layer addSublayer:emitterLayer];
         
         // font
         _cityLabel.textColor = [UIColor darkGrayColor];
@@ -136,52 +136,51 @@
         [self.view.layer insertSublayer:bgLayer atIndex:0];
         
         // effect
-        CAEmitterLayer *emitterLayer = [CAEmitterLayer layer]; // 1
+        CAEmitterLayer *emitterLayer = [CAEmitterLayer layer];
         emitterLayer.backgroundColor = [[UIColor colorWithWhite:0.0 alpha:0.0] CGColor];
-        emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width + 100, self.view.bounds.size.height / 2); // 2
-        emitterLayer.emitterZPosition = 10; // 3
-        emitterLayer.emitterSize = CGSizeMake(0, 500); // 4
-        emitterLayer.emitterShape = kCAEmitterLayerCuboid; // 5
+        emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width + 100, self.view.bounds.size.height / 2);
+        emitterLayer.emitterZPosition = 10;
+        emitterLayer.emitterSize = CGSizeMake(0, 500);
+        emitterLayer.emitterShape = kCAEmitterLayerCuboid;
         
-        CAEmitterLayer *emitterLayer2 = [CAEmitterLayer layer]; // 1
+        CAEmitterLayer *emitterLayer2 = [CAEmitterLayer layer];
         emitterLayer2.backgroundColor = [[UIColor colorWithWhite:0.0 alpha:0.0] CGColor];
-        emitterLayer2.emitterPosition = CGPointMake(self.view.bounds.size.width + 100, self.view.bounds.size.height / 2); // 2
-        emitterLayer2.emitterZPosition = 10; // 3
-        emitterLayer2.emitterSize = CGSizeMake(0, 500); // 4
-        emitterLayer2.emitterShape = kCAEmitterLayerCuboid; // 5
+        emitterLayer2.emitterPosition = CGPointMake(self.view.bounds.size.width + 100, self.view.bounds.size.height / 2);
+        emitterLayer2.emitterZPosition = 10;
+        emitterLayer2.emitterSize = CGSizeMake(0, 500);
+        emitterLayer2.emitterShape = kCAEmitterLayerCuboid;
         
         // GO TO THE LEFT
-        CAEmitterCell *emitterCell = [CAEmitterCell emitterCell]; // 6
-        emitterCell.scale = 0.75; // 7
-        emitterCell.scaleRange = 0.5; // 8
+        CAEmitterCell *emitterCell = [CAEmitterCell emitterCell];
+        emitterCell.scale = 0.75;
+        emitterCell.scaleRange = 0.5;
         emitterCell.emissionLatitude = 2;
-        emitterCell.lifetime = 100.0; // 10
-        emitterCell.birthRate = 0.05; // 11
-        emitterCell.velocity = 10; // 12
-        emitterCell.velocityRange = 50; // 13
+        emitterCell.lifetime = 100.0;
+        emitterCell.birthRate = 0.05;
+        emitterCell.velocity = 10;
+        emitterCell.velocityRange = 50;
         emitterCell.alphaRange = 0.2;
-        //emitterCell.xAcceleration = -50;
         emitterCell.color = [[UIColor colorWithWhite:1.0 alpha:0.5] CGColor];
-        emitterCell.contents = (id)[[UIImage imageNamed:@"Cloud01.png"] CGImage]; // 15
+        emitterCell.contents = (id)[[UIImage imageNamed:CLOUD_IMAGE_0] CGImage];
         
         // second cloud type
         // GO TO THE RIGHT
-        CAEmitterCell *emitterCell2 = [CAEmitterCell emitterCell]; // 6
-        emitterCell2.scale = 0.75; // 7
-        emitterCell2.scaleRange = 0.5; // 8
+        CAEmitterCell *emitterCell2 = [CAEmitterCell emitterCell];
+        emitterCell2.scale = 0.75;
+        emitterCell2.scaleRange = 0.5;
         emitterCell.emissionLatitude = 2;
-        emitterCell2.lifetime = 100.0; // 10
-        emitterCell2.birthRate = 0.05; // 11
-        emitterCell2.velocity = 10; // 12
-        emitterCell2.velocityRange = 50; // 13
+        emitterCell2.lifetime = 100.0;
+        emitterCell2.birthRate = 0.05;
+        emitterCell2.velocity = 10;
+        emitterCell2.velocityRange = 50;
         emitterCell2.alphaRange = 0.2;
         emitterCell2.color = [[UIColor colorWithWhite:1.0 alpha:0.5] CGColor];
-        emitterCell2.contents = (id)[[UIImage imageNamed:@"Cloud03.png"] CGImage]; // 15
+        emitterCell2.contents = (id)[[UIImage imageNamed:CLOUD_IMAGE_1] CGImage];
         
-        emitterLayer.emitterCells = [NSArray arrayWithObject:emitterCell]; // 16
-        emitterLayer2.emitterCells = [NSArray arrayWithObject:emitterCell2]; // 16
-        [self.view.layer addSublayer:emitterLayer]; // 17
-        [self.view.layer addSublayer:emitterLayer2]; // 17
+        emitterLayer.emitterCells = [NSArray arrayWithObject:emitterCell];
+        emitterLayer2.emitterCells = [NSArray arrayWithObject:emitterCell2];
+        [self.view.layer addSublayer:emitterLayer];
+        [self.view.layer addSublayer:emitterLayer2];
         
         // font
         _cityLabel.textColor = [UIColor darkGrayColor];

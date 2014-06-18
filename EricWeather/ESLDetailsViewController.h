@@ -11,6 +11,9 @@
 #import <SpriteKit/SpriteKit.h>
 #import "ESLBackgroundLayer.h"
 
+#define CLOUD_IMAGE_0 @"Cloud01.png"
+#define CLOUD_IMAGE_1 @"Cloud03.png"
+
 @interface ESLDetailsViewController : UIViewController
 
 // various details that will be displayed

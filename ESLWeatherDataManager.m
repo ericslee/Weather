@@ -98,7 +98,7 @@
     
     // parse json data
     NSDictionary *rawParsedJson = [NSJSONSerialization JSONObjectWithData:_currentCityWeatherData options:NSJSONReadingMutableLeaves  error:&myError];
-    NSArray *results =  [rawParsedJson objectForKey:@"current_observation"];
+    NSArray *results =  [rawParsedJson objectForKey:CURRENT_OBSERVATION_KEY];
     if([results count] == 0)
     {
         // handle invalid input
@@ -113,28 +113,28 @@
     }
     else
     {
-        NSArray *parsedJson =  [rawParsedJson objectForKey:@"current_observation"];
+        NSArray *parsedJson =  [rawParsedJson objectForKey:CURRENT_OBSERVATION_KEY];
         
         // create the city object
-        NSString *cityName = [[results valueForKey:@"display_location"] valueForKey:@"city"];
-        NSString *zipName = [[results valueForKey:@"display_location"] valueForKey:@"zip"];
+        NSString *cityName = [[results valueForKey:DISPLAY_LOCATION_KEY] valueForKey:CITY_KEY];
+        NSString *zipName = [[results valueForKey:DISPLAY_LOCATION_KEY] valueForKey:ZIP_KEY];
         ESLCityData *city = [[ESLCityData alloc] initWithCity:cityName andZip:zipName];
         
         // create the weather object
         ESLWeatherData *weatherForCity = [[ESLWeatherData alloc] init];
-        weatherForCity.condition = [parsedJson valueForKey:@"weather"];
-        weatherForCity.temperature = [parsedJson valueForKey:@"temp_f"];
+        weatherForCity.condition = [parsedJson valueForKey:WEATHER_KEY];
+        weatherForCity.temperature = [parsedJson valueForKey:TEMP_KEY];
         
         NSString *iconURL = ICON_URL;
-        NSString *iconType = [parsedJson valueForKey:@"icon"];
+        NSString *iconType = [parsedJson valueForKey:ICON_KEY];
         iconURL = [iconURL stringByAppendingString:iconType];
         iconURL = [iconURL stringByAppendingString:GIF_EXTENSION];
         weatherForCity.icon = iconURL;
         
-        weatherForCity.wind = [parsedJson valueForKey:@"wind_string"];
-        weatherForCity.humidity = [parsedJson valueForKey:@"relative_humidity"];
-        weatherForCity.feelsLike = [parsedJson valueForKey:@"feelslike_f"];
-        weatherForCity.weatherEffect = [parsedJson valueForKey:@"icon"];
+        weatherForCity.wind = [parsedJson valueForKey:WIND_KEY];
+        weatherForCity.humidity = [parsedJson valueForKey:HUMIDITY_KEY];
+        weatherForCity.feelsLike = [parsedJson valueForKey:FEELS_LIKE_KEY];
+        weatherForCity.weatherEffect = [parsedJson valueForKey:ICON_KEY];
         
         // assign the weather object to the city
         city.weatherData = weatherForCity;
