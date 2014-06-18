@@ -20,7 +20,7 @@
         self.citiesArray = [[NSMutableArray alloc] init];
         
         // add SF as the default initial city
-        [self addCityToModel:SFO_URL];
+        //[self addCityToModel:SFO_URL];
     }
     return self;
 }
@@ -43,23 +43,45 @@
             httpRequestURL = [httpRequestURL stringByAppendingString:newCity];
             httpRequestURL = [httpRequestURL stringByAppendingString:JSON_EXTENSION];
             
-            [self addCityToModel:httpRequestURL];
+            //[self addCityToModel:httpRequestURL];
         }
     }
     return self;
 }
 
-- (void)addCityToModel:(NSString *)cityURL
+- (void)addCityToModel:(NSArray *)parsedJson
 {
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:
-                                [NSURL URLWithString:cityURL]];
-    NSURLConnection *theConnection=[[NSURLConnection alloc]
-                                    initWithRequest:theRequest delegate:self];
-    if(theConnection){
-        _currentCityWeatherData = [[NSMutableData alloc] init];
-    } else {
-        NSLog(@"failed");
-    }
+    // create the city object
+    NSString *cityName = [[parsedJson valueForKey:DISPLAY_LOCATION_KEY] valueForKey:CITY_KEY];
+    NSString *zipName = [[parsedJson valueForKey:DISPLAY_LOCATION_KEY] valueForKey:ZIP_KEY];
+    ESLCityData *city = [[ESLCityData alloc] initWithCity:cityName andZip:zipName];
+    
+    // create the weather object
+    ESLWeatherData *weatherForCity = [[ESLWeatherData alloc] init];
+    weatherForCity.condition = [parsedJson valueForKey:WEATHER_KEY];
+    weatherForCity.temperature = [parsedJson valueForKey:TEMP_KEY];
+    
+    NSString *iconURL = ICON_URL;
+    NSString *iconType = [parsedJson valueForKey:ICON_KEY];
+    iconURL = [iconURL stringByAppendingString:iconType];
+    iconURL = [iconURL stringByAppendingString:GIF_EXTENSION];
+    weatherForCity.icon = iconURL;
+    
+    weatherForCity.wind = [parsedJson valueForKey:WIND_KEY];
+    weatherForCity.humidity = [parsedJson valueForKey:HUMIDITY_KEY];
+    weatherForCity.feelsLike = [parsedJson valueForKey:FEELS_LIKE_KEY];
+    weatherForCity.weatherEffect = [parsedJson valueForKey:ICON_KEY];
+    
+    // assign the weather object to the city
+    city.weatherData = weatherForCity;
+    
+    // add city to the array
+    [self.citiesArray addObject:city];
+    NSLog(@"Cities Array count: %ld", [self.citiesArray count]);
+    
+    // Notify the controller that the data has been updated
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DataReceived"
+                                                        object:self];
 }
 
 - (void)removeCityFromModel:(NSString *)cityToRemove
@@ -72,82 +94,9 @@
                                                         object:self];
 }
 
-#pragma mark - Connection delegates
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    [_currentCityWeatherData setLength:0];
-}
 
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [_currentCityWeatherData appendData:data];
-}
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSString *msg = [NSString stringWithFormat:@"Failed: %@", [error description]];
-    NSLog(@"%@",msg);
-}
-
-// Called on data finish loading
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    
-    NSError *myError = nil;
-    
-    // parse json data
-    NSDictionary *rawParsedJson = [NSJSONSerialization JSONObjectWithData:_currentCityWeatherData options:NSJSONReadingMutableLeaves  error:&myError];
-    NSArray *results =  [rawParsedJson objectForKey:CURRENT_OBSERVATION_KEY];
-    if([results count] == 0)
-    {
-        // handle invalid input
-        NSLog(@"No suitable city found");
-            
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
-                                                        message:@"Not a valid city, state OR zip"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Dismiss"
-                                              otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else
-    {
-        NSArray *parsedJson =  [rawParsedJson objectForKey:CURRENT_OBSERVATION_KEY];
-        
-        // create the city object
-        NSString *cityName = [[results valueForKey:DISPLAY_LOCATION_KEY] valueForKey:CITY_KEY];
-        NSString *zipName = [[results valueForKey:DISPLAY_LOCATION_KEY] valueForKey:ZIP_KEY];
-        ESLCityData *city = [[ESLCityData alloc] initWithCity:cityName andZip:zipName];
-        
-        // create the weather object
-        ESLWeatherData *weatherForCity = [[ESLWeatherData alloc] init];
-        weatherForCity.condition = [parsedJson valueForKey:WEATHER_KEY];
-        weatherForCity.temperature = [parsedJson valueForKey:TEMP_KEY];
-        
-        NSString *iconURL = ICON_URL;
-        NSString *iconType = [parsedJson valueForKey:ICON_KEY];
-        iconURL = [iconURL stringByAppendingString:iconType];
-        iconURL = [iconURL stringByAppendingString:GIF_EXTENSION];
-        weatherForCity.icon = iconURL;
-        
-        weatherForCity.wind = [parsedJson valueForKey:WIND_KEY];
-        weatherForCity.humidity = [parsedJson valueForKey:HUMIDITY_KEY];
-        weatherForCity.feelsLike = [parsedJson valueForKey:FEELS_LIKE_KEY];
-        weatherForCity.weatherEffect = [parsedJson valueForKey:ICON_KEY];
-        
-        // assign the weather object to the city
-        city.weatherData = weatherForCity;
-        
-        // add city to the array
-        [self.citiesArray addObject:city];
-        NSLog(@"Cities Array count: %ld", [self.citiesArray count]);
-        
-        // Notify the controller that the data has been updated
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"DataReceived"
-                                                             object:self];
-    }
-}
 
 
 @end

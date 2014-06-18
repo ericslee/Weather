@@ -15,6 +15,7 @@
 {
     if (!_mainModel) {
         _mainModel = [[ESLWeatherDataManager alloc] initDefault];
+        [self httpRequestWithURL:SFO_URL];
     }
     
     return _mainModel;
@@ -151,8 +152,24 @@
             httpRequestURL = [httpRequestURL stringByAppendingString:jsonTag];
         }
         
+        [self httpRequestWithURL:httpRequestURL];
+        
         // add city to the model
-        [self.mainModel addCityToModel:httpRequestURL];
+        //[self.mainModel addCityToModel:httpRequestURL];
+    }
+}
+
+- (void)httpRequestWithURL:(NSString *)httpRequestURL
+{
+    // establish connection
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:
+                                [NSURL URLWithString:httpRequestURL]];
+    NSURLConnection *theConnection=[[NSURLConnection alloc]
+                                    initWithRequest:theRequest delegate:self];
+    if(theConnection){
+        _currentCityWeatherData = [[NSMutableData alloc] init];
+    } else {
+        NSLog(@"failed");
     }
 }
 
@@ -163,6 +180,54 @@
         return [str length] && isnumber([str characterAtIndex:0]);
     else
         return NO;
+}
+
+#pragma mark - Connection delegates
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [_currentCityWeatherData setLength:0];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [_currentCityWeatherData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSString *msg = [NSString stringWithFormat:@"Failed: %@", [error description]];
+    NSLog(@"%@",msg);
+}
+
+// Called on data finish loading
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    
+    NSError *myError = nil;
+    
+    // parse json data
+    NSDictionary *rawParsedJson = [NSJSONSerialization JSONObjectWithData:_currentCityWeatherData options:NSJSONReadingMutableLeaves  error:&myError];
+    NSArray *results =  [rawParsedJson objectForKey:CURRENT_OBSERVATION_KEY];
+    if([results count] == 0)
+    {
+        // handle invalid input
+        NSLog(@"No suitable city found");
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
+                                                        message:@"Not a valid city, state OR zip"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Dismiss"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else
+    {
+        // pass in parsedJson into model
+        NSArray *parsedJson =  [rawParsedJson objectForKey:CURRENT_OBSERVATION_KEY];
+        
+        [self.mainModel addCityToModel:parsedJson];
+    }
 }
 
 #pragma mark - Removing cities

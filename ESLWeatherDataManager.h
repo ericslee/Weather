@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "ESLCityData.h"
 
-#define SFO_URL @"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/94107.json"
 #define HTTP_REQUEST_URL @"http://api.wunderground.com/api/bcc62b913a4abd44/conditions/forecast/q/"
 #define JSON_EXTENSION @".json"
 #define ICON_URL @"http://icons.wxug.com/i/c/i/"
@@ -27,9 +26,6 @@
 
 @interface ESLWeatherDataManager : NSObject
 
-// weather data for most recent city
-@property (nonatomic, strong) NSMutableData *currentCityWeatherData;
-
 // stores all cities in list to maintain ordering
 @property (nonatomic, strong) NSMutableArray *citiesArray;
 
@@ -45,7 +41,7 @@
 - (id)initRefreshData:(NSMutableArray *)citiesToReload;
 
 // add city to model
-- (void)addCityToModel:(NSString *)cityURL;
+- (void)addCityToModel:(NSArray *)parsedJson;
 
 // remove swiped city from model
 - (void)removeCityFromModel:(NSString *)cityToRemove;
