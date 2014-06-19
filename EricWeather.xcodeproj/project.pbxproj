@@ -10,6 +10,7 @@
 		486566F3194FC1DB00C2BE1A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 486566F2194FC1DB00C2BE1A /* CoreData.framework */; };
 		487751531950C07D00E9406A /* ESLWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 487751521950C07D00E9406A /* ESLWeatherData.m */; };
 		487751591950C0F900E9406A /* ESLCityData.m in Sources */ = {isa = PBXBuildFile; fileRef = 487751581950C0F900E9406A /* ESLCityData.m */; };
+		4877515D1953637D00E9406A /* WeatherModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4877515B1953637D00E9406A /* WeatherModel.xcdatamodeld */; };
 		488C370F19476CFF00F5BE9C /* ESLBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */; };
 		488C37111947732100F5BE9C /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488C37101947732100F5BE9C /* SpriteKit.framework */; };
 		488C37141947736F00F5BE9C /* RainEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 488C37121947736F00F5BE9C /* RainEffect.sks */; };
@@ -66,6 +67,7 @@
 		487751521950C07D00E9406A /* ESLWeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLWeatherData.m; sourceTree = "<group>"; };
 		487751571950C0F900E9406A /* ESLCityData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESLCityData.h; sourceTree = "<group>"; };
 		487751581950C0F900E9406A /* ESLCityData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLCityData.m; sourceTree = "<group>"; };
+		4877515C1953637D00E9406A /* WeatherModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherModel.xcdatamodel; sourceTree = "<group>"; };
 		488C370D19476CFF00F5BE9C /* ESLBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLBackgroundLayer.h; path = ../ESLBackgroundLayer.h; sourceTree = "<group>"; };
 		488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESLBackgroundLayer.m; path = ../ESLBackgroundLayer.m; sourceTree = "<group>"; };
 		488C37101947732100F5BE9C /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
@@ -262,6 +264,7 @@
 				48EAC2211941380C00B0A30A /* InfoPlist.strings */,
 				48EAC2241941380C00B0A30A /* main.m */,
 				48EAC2261941380C00B0A30A /* EricWeather-Prefix.pch */,
+				4877515B1953637D00E9406A /* WeatherModel.xcdatamodeld */,
 				488C37121947736F00F5BE9C /* RainEffect.sks */,
 				48C314CE1949034F007B049E /* raindrop.png */,
 				488C37131947736F00F5BE9C /* spark.png */,
@@ -430,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				488C370F19476CFF00F5BE9C /* ESLBackgroundLayer.m in Sources */,
+				4877515D1953637D00E9406A /* WeatherModel.xcdatamodeld in Sources */,
 				487751531950C07D00E9406A /* ESLWeatherData.m in Sources */,
 				48EAC2321941380C00B0A30A /* ESLViewController.m in Sources */,
 				48B124271942321400835400 /* ESLWeatherDataManager.m in Sources */,
@@ -671,6 +675,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4877515B1953637D00E9406A /* WeatherModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4877515C1953637D00E9406A /* WeatherModel.xcdatamodel */,
+			);
+			currentVersion = 4877515C1953637D00E9406A /* WeatherModel.xcdatamodel */;
+			path = WeatherModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 48EAC20D1941380C00B0A30A /* Project object */;
 }

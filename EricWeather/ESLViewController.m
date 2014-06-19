@@ -93,7 +93,6 @@
     {
         [zipCodesTempArray addObject:city.zipCode];
     }
-    //_mainModel = [[ESLWeatherDataManager alloc] initRefreshData:zipCodesTempArray];
     
     self.mainModel.citiesArray = [[NSMutableArray alloc] init];
     //[self.mainModel.citiesArray removeAllObjects];
@@ -107,7 +106,6 @@
         httpRequestURL = [httpRequestURL stringByAppendingString:JSON_EXTENSION];
         
         [self httpRequestWithURL:httpRequestURL];
-        //[self addCityToModel:httpRequestURL];
     }
 
     

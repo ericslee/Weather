@@ -18,4 +18,5 @@
     #import <MobileCoreServices/MobileCoreServices.h>
     #import <CoreLocation/CoreLocation.h>
     #import <QuartzCore/QuartzCore.h>
+    #import <CoreData/CoreData.h>
 #endif
