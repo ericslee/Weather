@@ -316,7 +316,7 @@
         
         // highlight cell if it is the user's location
         if ([currentCity.zipCode isEqualToString:self.currentLocation]) {
-            backgroundView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+            //backgroundView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
         }
         
     }

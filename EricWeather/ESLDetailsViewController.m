@@ -48,10 +48,78 @@
     {
         // background
         CAGradientLayer *bgLayer = [ESLBackgroundLayer rainGradient];
-        bgLayer.frame = self.view.bounds;
-        [self.view.layer insertSublayer:bgLayer atIndex:0];
+        [self setBackground:bgLayer];
         
         // effect
+        [self setEffect:@"rain"];
+        
+        // font
+        [self setFont:[UIColor colorWithWhite:0.9 alpha:1.0]];
+    }
+    
+    // Snow
+    else if([self.weatherEffect isEqualToString:@"chanceflurries"] || [self.weatherEffect isEqualToString:@"chancesleet"] || [self.weatherEffect isEqualToString:@"chancesnow"]
+            || [self.weatherEffect isEqualToString:@"flurries"] || [self.weatherEffect isEqualToString:@"sleet"] || [self.weatherEffect isEqualToString:@"snow"])
+    {
+        // background
+        CAGradientLayer *bgLayer = [ESLBackgroundLayer snowGradient];
+        [self setBackground:bgLayer];
+        
+        // effect
+        [self setEffect:@"snow"];
+        
+        // font
+        [self setFont:[UIColor darkGrayColor]];
+        
+    }
+    // Cloudy
+    else if([self.weatherEffect isEqualToString:@"cloudy"] || [self.weatherEffect isEqualToString:@"fog"] || [self.weatherEffect isEqualToString:@"hazy"]
+            || [self.weatherEffect isEqualToString:@"mostlycloudy"] || [self.weatherEffect isEqualToString:@"partlycloudy"] || [self.weatherEffect isEqualToString:@"partlysunny"])
+    {
+        // background
+        CAGradientLayer *bgLayer = [ESLBackgroundLayer cloudyGradient];
+        [self setBackground:bgLayer];
+        
+        // effect
+        [self setEffect:@"cloudy"];
+        
+        // font
+        [self setFont:[UIColor darkGrayColor]];
+    }
+    // Sunny/default
+    else
+    {
+        // background
+        CAGradientLayer *bgLayer = [ESLBackgroundLayer sunnyGradient];
+        [self setBackground:bgLayer];
+        
+        // effect
+        [self setEffect:@"sunny"];
+        
+        // font
+        [self setFont:[UIColor darkGrayColor]];
+    }
+}
+
+- (void)setBackground:(CAGradientLayer *)gradient
+{
+    gradient.frame = self.view.bounds;
+    [self.view.layer insertSublayer:gradient atIndex:0];
+}
+
+- (void)setFont:(UIColor *)fontColor
+{
+    self.cityLabel.textColor = fontColor;
+    self.conditionLabel.textColor = fontColor;
+    self.temperatureLabel.textColor = fontColor;
+    self.windStringLabel.textColor = fontColor;
+    self.humidityLabel.textColor = fontColor;
+    self.feelsLikeLabel.textColor = fontColor;
+}
+
+- (void)setEffect:(NSString *)effect
+{
+    if ([effect isEqualToString:@"rain"]) {
         CAEmitterLayer *emitterLayer = [CAEmitterLayer layer];
         emitterLayer.backgroundColor = [[UIColor colorWithWhite:0.0 alpha:0.0] CGColor];
         emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.origin.y);
@@ -76,26 +144,8 @@
         emitterLayer.emitterCells = [NSArray arrayWithObject:emitterCell];
         
         [self.view.layer addSublayer:emitterLayer];
-        
-        // font
-        _cityLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
-        _conditionLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
-        _temperatureLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
-        _windStringLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
-        _humidityLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
-        _feelsLikeLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     }
-    
-    // Snow
-    else if([self.weatherEffect isEqualToString:@"chanceflurries"] || [self.weatherEffect isEqualToString:@"chancesleet"] || [self.weatherEffect isEqualToString:@"chancesnow"]
-            || [self.weatherEffect isEqualToString:@"flurries"] || [self.weatherEffect isEqualToString:@"sleet"] || [self.weatherEffect isEqualToString:@"snow"])
-    {
-        // background
-        CAGradientLayer *bgLayer = [ESLBackgroundLayer snowGradient];
-        bgLayer.frame = self.view.bounds;
-        [self.view.layer insertSublayer:bgLayer atIndex:0];
-        
-        // effect
+    else if ([effect isEqualToString:@"snow"]) {
         CAEmitterLayer *emitterLayer = [CAEmitterLayer layer];
         emitterLayer.backgroundColor = [[UIColor colorWithWhite:0.0 alpha:0.0] CGColor];
         emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.origin.y);
@@ -116,26 +166,8 @@
         emitterCell.contents = (id)[[UIImage imageNamed:@"spark.png"] CGImage];
         emitterLayer.emitterCells = [NSArray arrayWithObject:emitterCell];
         [self.view.layer addSublayer:emitterLayer];
-        
-        // font
-        _cityLabel.textColor = [UIColor darkGrayColor];
-        _conditionLabel.textColor = [UIColor darkGrayColor];
-        _temperatureLabel.textColor = [UIColor darkGrayColor];
-        _windStringLabel.textColor = [UIColor darkGrayColor];
-        _humidityLabel.textColor = [UIColor darkGrayColor];
-        _feelsLikeLabel.textColor = [UIColor darkGrayColor];
-        
     }
-    // Cloudy
-    else if([self.weatherEffect isEqualToString:@"cloudy"] || [self.weatherEffect isEqualToString:@"fog"] || [self.weatherEffect isEqualToString:@"hazy"]
-            || [self.weatherEffect isEqualToString:@"mostlycloudy"] || [self.weatherEffect isEqualToString:@"partlycloudy"] || [self.weatherEffect isEqualToString:@"partlysunny"])
-    {
-        // background
-        CAGradientLayer *bgLayer = [ESLBackgroundLayer cloudyGradient];
-        bgLayer.frame = self.view.bounds;
-        [self.view.layer insertSublayer:bgLayer atIndex:0];
-        
-        // effect
+    else if ([effect isEqualToString:@"cloudy"]) {
         CAEmitterLayer *emitterLayer = [CAEmitterLayer layer];
         emitterLayer.backgroundColor = [[UIColor colorWithWhite:0.0 alpha:0.0] CGColor];
         emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width + 100, self.view.bounds.size.height / 2);
@@ -181,32 +213,9 @@
         emitterLayer2.emitterCells = [NSArray arrayWithObject:emitterCell2];
         [self.view.layer addSublayer:emitterLayer];
         [self.view.layer addSublayer:emitterLayer2];
-        
-        // font
-        _cityLabel.textColor = [UIColor darkGrayColor];
-        _conditionLabel.textColor = [UIColor darkGrayColor];
-        _temperatureLabel.textColor = [UIColor darkGrayColor];
-        _windStringLabel.textColor = [UIColor darkGrayColor];
-        _humidityLabel.textColor = [UIColor darkGrayColor];
-        _feelsLikeLabel.textColor = [UIColor darkGrayColor];
     }
-    // Sunny/default
-    else
-    {
-        // background
-        CAGradientLayer *bgLayer = [ESLBackgroundLayer sunnyGradient];
-        bgLayer.frame = self.view.bounds;
-        [self.view.layer insertSublayer:bgLayer atIndex:0];
-        
-        // effect
-        
-        // font
-        _cityLabel.textColor = [UIColor darkGrayColor];
-        _conditionLabel.textColor = [UIColor darkGrayColor];
-        _temperatureLabel.textColor = [UIColor darkGrayColor];
-        _windStringLabel.textColor = [UIColor darkGrayColor];
-        _humidityLabel.textColor = [UIColor darkGrayColor];
-        _feelsLikeLabel.textColor = [UIColor darkGrayColor];
+    else {
+        // no effect at the moment
     }
 }
 
