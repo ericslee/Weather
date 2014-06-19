@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="City" syncable="YES">
+    <entity name="City" representedClassName="City" syncable="YES">
         <attribute name="cityName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="weatherData" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="WeatherData" inverseName="cityData" inverseEntity="WeatherData" syncable="YES"/>
     </entity>
-    <entity name="WeatherData" syncable="YES">
+    <entity name="WeatherData" representedClassName="WeatherData" syncable="YES">
         <attribute name="condition" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="feelsLike" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="humidity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="temperature" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="temperatureF" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="weatherEffect" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="wind" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="cityData" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="City" inverseName="weatherData" inverseEntity="City" syncable="YES"/>

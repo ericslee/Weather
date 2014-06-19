@@ -18,6 +18,8 @@
         
         // add SF as the default initial city
         [self httpRequestWithURL:SFO_URL];
+        
+        // load from core data
     }
     
     // set current location based on city
@@ -89,7 +91,7 @@
     
     // store the zip codes to refresh
     NSMutableArray *zipCodesTempArray = [[NSMutableArray alloc] init];
-    for(ESLCityData *city in self.mainModel.citiesArray)
+    for(City *city in self.mainModel.citiesArray)
     {
         [zipCodesTempArray addObject:city.zipCode];
     }
@@ -300,12 +302,13 @@
         // get reference to UI elements on cell
         UILabel *cityLabel = (id)[cell viewWithTag:1];
         // set the text based on the section index
-        ESLCityData *currentCity = [self.mainModel.citiesArray objectAtIndex:index];
+        //ESLCityData *currentCity = [self.mainModel.citiesArray objectAtIndex:index];
+        City *currentCity = [self.mainModel.citiesArray objectAtIndex:index];
         NSString *cellCity = currentCity.cityName;
         cityLabel.text = cellCity;
         
         UILabel *temperatureLabel = (id)[cell viewWithTag:3];
-        NSString *temperatureString = currentCity.weatherData.temperature;
+        NSString *temperatureString = currentCity.weatherData.temperatureF;
         NSInteger temperatureInteger = [temperatureString integerValue];
         temperatureLabel.text = [NSString stringWithFormat:@"%ld°", temperatureInteger];
         
@@ -339,10 +342,11 @@
     ESLDetailsViewController *vc =[segue destinationViewController];
     
     // set properties in the controller that store the data at the current index
-    ESLCityData *currentCity = [self.mainModel.citiesArray objectAtIndex:self.currentIndex];
+    //ESLCityData *currentCity = [self.mainModel.citiesArray objectAtIndex:self.currentIndex];
+    City *currentCity = [self.mainModel.citiesArray objectAtIndex:self.currentIndex];
     vc.city = currentCity.cityName;
     vc.condition = currentCity.weatherData.condition;
-    NSString *temperatureString = currentCity.weatherData.temperature;
+    NSString *temperatureString = currentCity.weatherData.temperatureF;
     NSInteger temperatureInteger = [temperatureString integerValue];
     vc.temperature = [NSString stringWithFormat:@"%ld°", temperatureInteger];
     vc.icon = currentCity.weatherData.icon;

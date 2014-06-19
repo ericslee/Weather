@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ESLCityData.h"
+#import "ESLAppDelegate.h"
 
 // CONSTANTS
 
@@ -39,6 +39,5 @@
 
 // remove swiped city from model
 - (void)removeCityFromModel:(NSInteger)index;
-
 
 @end

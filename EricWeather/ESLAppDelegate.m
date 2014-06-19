@@ -17,37 +17,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    // Testing Core Data
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSManagedObject *cityObject = [NSEntityDescription insertNewObjectForEntityForName:@"City" inManagedObjectContext:context];
-    [cityObject setValue:@"Woodstock" forKey:@"cityName"];
-    [cityObject setValue:@"30189" forKey:@"zipCode"];
-    NSManagedObject *weatherDetails = [NSEntityDescription insertNewObjectForEntityForName:@"WeatherData" inManagedObjectContext:context];
-    [weatherDetails setValue:@"lots of FOG" forKey:@"condition"];
-    [weatherDetails setValue:@"999" forKey:@"temperature"];
-    [weatherDetails setValue:@"" forKey:@"icon"];
-    [weatherDetails setValue:@"no wind lol" forKey:@"wind"];
-    [weatherDetails setValue:@"extreme humidity" forKey:@"humidity"];
-    [weatherDetails setValue:@"50" forKey:@"feelsLike"];
-    [weatherDetails setValue:@"rain" forKey:@"weatherEffect"];
-    [weatherDetails setValue:cityObject forKey:@"cityData"];
-    [cityObject setValue:weatherDetails forKey:@"weatherData"];
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"City" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject *info in fetchedObjects) {
-        NSLog(@"Name: %@", [info valueForKey:@"cityName"]);
-        NSManagedObject *details = [info valueForKey:@"weatherData"];
-        NSLog(@"Condition: %@", [details valueForKey:@"condition"]);
-    }
-    
     return YES;
 }
 							
@@ -171,5 +140,6 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
 
 @end
