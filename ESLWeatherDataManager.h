@@ -29,13 +29,13 @@
 @interface ESLWeatherDataManager : NSObject
 
 // stores all cities in list to maintain ordering
-@property (nonatomic, strong) NSMutableArray *citiesArray;
+ @property (nonatomic, strong) NSArray *citiesArray;
 
 // default initializer that loads S.F. data
 - (id)initDefault;
 
 // add city to model
-- (void)addCityToModel:(NSArray *)parsedJson;
+- (void)updateModelWithCity:(NSArray *)parsedJson;
 
 // remove swiped city from model
 - (void)removeCityFromModel:(NSInteger)index;

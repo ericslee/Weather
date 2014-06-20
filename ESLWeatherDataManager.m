@@ -23,44 +23,53 @@
 }
 
 // creates a city entity, saves to core data, and adds to city array
-- (void)addCityToModel:(NSArray *)parsedJson
+- (void)updateModelWithCity:(NSArray *)parsedJson
 {
-    /*
-    // create the city object
+    // Get the core data context
+    ESLAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    // check if this city already exists in the city array, update the weather
     NSString *cityName = [[parsedJson valueForKey:DISPLAY_LOCATION_KEY] valueForKey:CITY_KEY];
-    NSString *zipName = [[parsedJson valueForKey:DISPLAY_LOCATION_KEY] valueForKey:ZIP_KEY];
-    ESLCityData *city = [[ESLCityData alloc] initWithCity:cityName andZip:zipName];
+    for (City *currentCity in self.citiesArray) {
+        if ([currentCity.cityName isEqualToString:cityName]) {
+            // update the city
+            
+            // create the fetch request
+            NSEntityDescription *entityDesc = [NSEntityDescription
+                                               entityForName:@"City" inManagedObjectContext:context];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cityName == %@", cityName];
+            [request setPredicate:predicate];
+            [request setEntity:entityDesc];
+            NSError *error;
+            NSArray *fetchedCities = [context executeFetchRequest:request error:&error];
+            
+            City *cityObject = [fetchedCities firstObject];
+            [self updateCity:cityObject andWeather:cityObject.weatherData withDetails:parsedJson inContext:context];
+            //[self updateExistingCity:parsedJson withName:cityName];
+            return;
+        }
+    }
     
-    // create the weather object
-    ESLWeatherData *weatherForCity = [[ESLWeatherData alloc] init];
-    weatherForCity.condition = [parsedJson valueForKey:WEATHER_KEY];
-    weatherForCity.temperature = [parsedJson valueForKey:TEMP_KEY];
-    
-    NSString *iconURL = ICON_URL;
-    NSString *iconType = [parsedJson valueForKey:ICON_KEY];
-    iconURL = [iconURL stringByAppendingString:iconType];
-    iconURL = [iconURL stringByAppendingString:GIF_EXTENSION];
-    weatherForCity.icon = iconURL;
-    
-    weatherForCity.wind = [parsedJson valueForKey:WIND_KEY];
-    weatherForCity.humidity = [parsedJson valueForKey:HUMIDITY_KEY];
-    weatherForCity.feelsLike = [parsedJson valueForKey:FEELS_LIKE_KEY];
-    weatherForCity.weatherEffect = [parsedJson valueForKey:ICON_KEY];
-    
-    // assign the weather object to the city
-    city.weatherData = weatherForCity;
-    
-    // add city to the array
-    [self.citiesArray addObject:city];
-    NSLog(@"Cities Array count: %ld", [self.citiesArray count]);
-    
-    */
-    
+    // else, create the new city and add to the model
+    City *cityObject = [NSEntityDescription insertNewObjectForEntityForName:@"City" inManagedObjectContext:context];
+    [cityObject setValue:cityName forKey:@"cityName"];
+    [cityObject setValue:[[parsedJson valueForKey:DISPLAY_LOCATION_KEY] valueForKey:ZIP_KEY] forKey:@"zipCode"];
+    WeatherData *weatherDetails = [NSEntityDescription insertNewObjectForEntityForName:@"WeatherData" inManagedObjectContext:context];
+    [self updateCity:cityObject andWeather:weatherDetails withDetails:parsedJson inContext:context];
+
+    //[self addCityToModel:parsedJson withName:cityName];
+}
+
+- (void)addCityToModel:(NSArray *)parsedJson withName:(NSString *)cityName
+{
     // Create city entity
     ESLAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
     City *cityObject = [NSEntityDescription insertNewObjectForEntityForName:@"City" inManagedObjectContext:context];
-    [cityObject setValue:[[parsedJson valueForKey:DISPLAY_LOCATION_KEY] valueForKey:CITY_KEY] forKey:@"cityName"];
+    [cityObject setValue:cityName forKey:@"cityName"];
     [cityObject setValue:[[parsedJson valueForKey:DISPLAY_LOCATION_KEY] valueForKey:ZIP_KEY] forKey:@"zipCode"];
     
     // create weather object
@@ -77,29 +86,78 @@
     [weatherDetails setValue:[parsedJson valueForKey:FEELS_LIKE_KEY] forKey:@"feelsLike"];
     [weatherDetails setValue:[parsedJson valueForKey:ICON_KEY] forKey:@"weatherEffect"];
     
-     // assign the weather object and city object to each other
+    // assign the weather object and city object to each other
     [weatherDetails setValue:cityObject forKey:@"cityData"];
     [cityObject setValue:weatherDetails forKey:@"weatherData"];
     
     // save to disk
     [self saveToDisk:context];
+}
+
+- (void)updateExistingCity:(NSArray *)parsedJson withName:(NSString *)cityName
+{
+    // Create city entity
+    ESLAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
-    /*
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"City" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject *info in fetchedObjects) {
-        NSLog(@"Name: %@", [info valueForKey:@"cityName"]);
-        NSManagedObject *details = [info valueForKey:@"weatherData"];
-        NSLog(@"Condition: %@", [details valueForKey:@"condition"]);
-    }
-    */
-     
-    // add city to the array
-    [self.citiesArray addObject:cityObject];
-    NSLog(@"Cities Array count: %ld", [self.citiesArray count]);
+    // create the fetch request
+    NSEntityDescription *entityDesc = [NSEntityDescription
+                                       entityForName:@"City" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cityName == %@", cityName];
+    [request setPredicate:predicate];
+    [request setEntity:entityDesc];
+    NSError *error;
+    NSArray *fetchedCities = [context executeFetchRequest:request error:&error];
+    
+    City *cityObject = [fetchedCities firstObject];
+    
+    [cityObject setValue:cityName forKey:@"cityName"];
+    [cityObject setValue:[[parsedJson valueForKey:DISPLAY_LOCATION_KEY] valueForKey:ZIP_KEY] forKey:@"zipCode"];
+    
+    // create weather object
+    WeatherData *weatherDetails = [NSEntityDescription insertNewObjectForEntityForName:@"WeatherData" inManagedObjectContext:context];
+    [weatherDetails setValue:[parsedJson valueForKey:WEATHER_KEY] forKey:@"condition"];
+    [weatherDetails setValue:[parsedJson valueForKey:TEMP_KEY] forKey:@"temperatureF"];
+    NSString *iconURL = ICON_URL;
+    NSString *iconType = [parsedJson valueForKey:ICON_KEY];
+    iconURL = [iconURL stringByAppendingString:iconType];
+    iconURL = [iconURL stringByAppendingString:GIF_EXTENSION];
+    [weatherDetails setValue:iconURL forKey:@"icon"];
+    [weatherDetails setValue:[parsedJson valueForKey:WIND_KEY] forKey:@"wind"];
+    [weatherDetails setValue:[parsedJson valueForKey:HUMIDITY_KEY] forKey:@"humidity"];
+    [weatherDetails setValue:[parsedJson valueForKey:FEELS_LIKE_KEY] forKey:@"feelsLike"];
+    [weatherDetails setValue:[parsedJson valueForKey:ICON_KEY] forKey:@"weatherEffect"];
+    
+    // assign the weather object and city object to each other
+    [weatherDetails setValue:cityObject forKey:@"cityData"];
+    [cityObject setValue:weatherDetails forKey:@"weatherData"];
+    
+    // save to disk
+    [self saveToDisk:context];
+
+}
+
+- (void)updateCity:(City *)cityObject andWeather:(WeatherData *)weatherDetails withDetails:(NSArray *)parsedJson inContext:(NSManagedObjectContext *)context
+{
+    [weatherDetails setValue:[parsedJson valueForKey:WEATHER_KEY] forKey:@"condition"];
+    [weatherDetails setValue:[parsedJson valueForKey:TEMP_KEY] forKey:@"temperatureF"];
+    NSString *iconURL = ICON_URL;
+    NSString *iconType = [parsedJson valueForKey:ICON_KEY];
+    iconURL = [iconURL stringByAppendingString:iconType];
+    iconURL = [iconURL stringByAppendingString:GIF_EXTENSION];
+    [weatherDetails setValue:iconURL forKey:@"icon"];
+    [weatherDetails setValue:[parsedJson valueForKey:WIND_KEY] forKey:@"wind"];
+    [weatherDetails setValue:[parsedJson valueForKey:HUMIDITY_KEY] forKey:@"humidity"];
+    [weatherDetails setValue:[parsedJson valueForKey:FEELS_LIKE_KEY] forKey:@"feelsLike"];
+    [weatherDetails setValue:[parsedJson valueForKey:ICON_KEY] forKey:@"weatherEffect"];
+    
+    // assign the weather object and city object to each other
+    [weatherDetails setValue:cityObject forKey:@"cityData"];
+    [cityObject setValue:weatherDetails forKey:@"weatherData"];
+    
+    // save to disk
+    [self saveToDisk:context];
 }
 
 - (void)removeCityFromModel:(NSInteger)index
@@ -111,9 +169,6 @@
     
     // save to disk
     [self saveToDisk:context];
-    
-    // remove city from array
-    [self.citiesArray removeObjectAtIndex:index];
 }
 
 - (void)saveToDisk:(NSManagedObjectContext *)context

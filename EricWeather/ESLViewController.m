@@ -17,15 +17,35 @@
         _mainModel = [[ESLWeatherDataManager alloc] initDefault];
         
         // add SF as the default initial city
-        [self httpRequestWithURL:SFO_URL];
+        //[self httpRequestWithURL:SFO_URL];
         
         // load from core data
+        [self fetchCities];
     }
     
     // set current location based on city
-    self.currentLocation = @"94107";
+    // self.currentLocation = @"94107";
     
     return _mainModel;
+}
+
+// fetch request to get cities from core data
+- (void)fetchCities
+{
+    // get the managed object context
+    ESLAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    // create the fetch request
+    NSEntityDescription *entityDesc = [NSEntityDescription
+                                       entityForName:@"City" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    NSError *error;
+    NSArray *fetchedCities = [context executeFetchRequest:request error:&error];
+    
+    // assign result to model
+    self.mainModel.citiesArray = fetchedCities;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -96,7 +116,7 @@
         [zipCodesTempArray addObject:city.zipCode];
     }
     
-    self.mainModel.citiesArray = [[NSMutableArray alloc] init];
+    // self.mainModel.citiesArray = [[NSMutableArray alloc] init];
     //[self.mainModel.citiesArray removeAllObjects];
     
     // add all cities again with updated data
@@ -241,8 +261,11 @@
     {
         // pass in parsedJson into model
         NSArray *parsedJson =  [rawParsedJson objectForKey:CURRENT_OBSERVATION_KEY];
+                
+        [self.mainModel updateModelWithCity:parsedJson];
         
-        [self.mainModel addCityToModel:parsedJson];
+        // refresh cities array
+        [self fetchCities];
         
         // reload the data
         [self.tableView reloadData];
@@ -254,6 +277,9 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.mainModel removeCityFromModel:[indexPath section]];
+        
+        // refresh cities
+        [self fetchCities];
         [self.tableView reloadData];
     }
 }
