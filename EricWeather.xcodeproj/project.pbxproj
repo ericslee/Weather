@@ -10,7 +10,6 @@
 		486566F3194FC1DB00C2BE1A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 486566F2194FC1DB00C2BE1A /* CoreData.framework */; };
 		4877515D1953637D00E9406A /* WeatherModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4877515B1953637D00E9406A /* WeatherModel.xcdatamodeld */; };
 		487751631953739800E9406A /* WeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 487751621953739800E9406A /* WeatherData.m */; };
-		487751661953823A00E9406A /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 487751651953823A00E9406A /* City.m */; };
 		488C370F19476CFF00F5BE9C /* ESLBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */; };
 		488C37111947732100F5BE9C /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488C37101947732100F5BE9C /* SpriteKit.framework */; };
 		488C37141947736F00F5BE9C /* RainEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 488C37121947736F00F5BE9C /* RainEffect.sks */; };
@@ -47,6 +46,7 @@
 		48EAC2451941380C00B0A30A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48EAC2431941380C00B0A30A /* InfoPlist.strings */; };
 		48EAC2471941380C00B0A30A /* EricWeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EAC2461941380C00B0A30A /* EricWeatherTests.m */; };
 		48FD093719589F88007F97F9 /* ESLCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FD093619589F88007F97F9 /* ESLCoreDataManager.m */; };
+		48FD093A1958AE83007F97F9 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FD09391958AE83007F97F9 /* City.m */; };
 		D4AA768BF3584DE0B874DFA1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC9A7F56C784C1AB7DA275B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -67,8 +67,6 @@
 		4877515C1953637D00E9406A /* WeatherModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherModel.xcdatamodel; sourceTree = "<group>"; };
 		487751611953739800E9406A /* WeatherData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherData.h; sourceTree = "<group>"; };
 		487751621953739800E9406A /* WeatherData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherData.m; sourceTree = "<group>"; };
-		487751641953823A00E9406A /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
-		487751651953823A00E9406A /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		488C370D19476CFF00F5BE9C /* ESLBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLBackgroundLayer.h; path = ../ESLBackgroundLayer.h; sourceTree = "<group>"; };
 		488C370E19476CFF00F5BE9C /* ESLBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESLBackgroundLayer.m; path = ../ESLBackgroundLayer.m; sourceTree = "<group>"; };
 		488C37101947732100F5BE9C /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
@@ -118,6 +116,8 @@
 		48EAC2461941380C00B0A30A /* EricWeatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EricWeatherTests.m; sourceTree = "<group>"; };
 		48FD093519589F88007F97F9 /* ESLCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLCoreDataManager.h; path = EricWeather/ESLCoreDataManager.h; sourceTree = "<group>"; };
 		48FD093619589F88007F97F9 /* ESLCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESLCoreDataManager.m; path = EricWeather/ESLCoreDataManager.m; sourceTree = "<group>"; };
+		48FD09381958AE83007F97F9 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
+		48FD09391958AE83007F97F9 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,8 +158,8 @@
 				48B124261942321400835400 /* ESLWeatherDataManager.m */,
 				487751611953739800E9406A /* WeatherData.h */,
 				487751621953739800E9406A /* WeatherData.m */,
-				487751641953823A00E9406A /* City.h */,
-				487751651953823A00E9406A /* City.m */,
+				48FD09381958AE83007F97F9 /* City.h */,
+				48FD09391958AE83007F97F9 /* City.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -441,7 +441,6 @@
 				4877515D1953637D00E9406A /* WeatherModel.xcdatamodeld in Sources */,
 				48EAC2321941380C00B0A30A /* ESLViewController.m in Sources */,
 				48B124271942321400835400 /* ESLWeatherDataManager.m in Sources */,
-				487751661953823A00E9406A /* City.m in Sources */,
 				48C314CC1947B6AD007B049E /* MBProgressHUD.m in Sources */,
 				488C37181947743700F5BE9C /* ESLDetailsViewController.m in Sources */,
 				48B124211942316100835400 /* ESLWebRequestManager.m in Sources */,
@@ -450,6 +449,7 @@
 				487751631953739800E9406A /* WeatherData.m in Sources */,
 				48B12424194231CE00835400 /* Reachability.m in Sources */,
 				48EAC2291941380C00B0A30A /* ESLAppDelegate.m in Sources */,
+				48FD093A1958AE83007F97F9 /* City.m in Sources */,
 				48FD093719589F88007F97F9 /* ESLCoreDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -32,14 +32,21 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="City" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5P-8T-sUG">
-                                                    <rect key="frame" x="14" y="5" width="161" height="27"/>
+                                                    <rect key="frame" x="14" y="4" width="161" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlt-7e-udG">
+                                                    <rect key="frame" x="14" y="21" width="161" height="27"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kzM-xW-4Ws">
-                                                    <rect key="frame" x="15" y="34" width="50" height="50"/>
+                                                    <rect key="frame" x="14" y="39" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -140,6 +147,13 @@
                                 <color key="textColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="177" translatesAutoresizingMaskIntoConstraints="NO" id="c4b-mF-aBP">
+                                <rect key="frame" x="20" y="116" width="177" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Temp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ec-DW-FsZ">
                                 <rect key="frame" x="20" y="197" width="184" height="114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -166,6 +180,7 @@
                         <outlet property="feelsLikeLabel" destination="cEA-ED-hAg" id="z4v-Jg-pVu"/>
                         <outlet property="humidityLabel" destination="nnC-Dr-ZG1" id="qwi-Dt-Dak"/>
                         <outlet property="temperatureLabel" destination="6ec-DW-FsZ" id="ey9-lt-ihD"/>
+                        <outlet property="timeLabel" destination="c4b-mF-aBP" id="i6e-08-A82"/>
                         <outlet property="weatherIcon" destination="X0i-jb-IkX" id="gxN-Fh-0NN"/>
                         <outlet property="windStringLabel" destination="TRM-Qs-9OS" id="fQa-Lh-N0W"/>
                     </connections>

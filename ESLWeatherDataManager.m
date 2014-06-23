@@ -58,6 +58,7 @@
     // set values for new city
     [cityObject setValue:cityName forKey:@"cityName"];
     [cityObject setValue:[[parsedJson valueForKey:DISPLAY_LOCATION_KEY] valueForKey:ZIP_KEY] forKey:@"zipCode"];
+    [cityObject setValue:[self getFormattedTime:[parsedJson valueForKey:TIME_KEY]] forKey:@"time"];
     
     // create the new weather details object
     WeatherData *weatherDetails = [NSEntityDescription insertNewObjectForEntityForName:@"WeatherData" inManagedObjectContext:context];
@@ -65,10 +66,37 @@
     [self updateCity:cityObject andWeather:weatherDetails withDetails:parsedJson inContext:context];
 }
 
-
+- (NSString *)getFormattedTime:(NSString *)timeString
+{
+    // cut out extraneous information and only leave the time in the string
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy"];
+    // use the current year as the delimiter
+    NSString *yearString = [formatter stringFromDate:[NSDate date]];
+    yearString = [yearString stringByAppendingString:@" "];
+    NSString *formattedTime = [[timeString componentsSeparatedByString:yearString] lastObject];
+    formattedTime = [[formattedTime componentsSeparatedByString:@" "] firstObject];
+    
+    // format time to standard time
+    NSArray *timeComponents = [formattedTime componentsSeparatedByString:@":"];
+    NSString *standardTimeHours = [timeComponents firstObject];
+    if ([standardTimeHours integerValue] > 12) {
+        NSInteger standardTimeHoursInteger = [standardTimeHours integerValue] - 12;
+        standardTimeHours = [NSString stringWithFormat:@"%ld", standardTimeHoursInteger];
+        standardTimeHours = [standardTimeHours stringByAppendingString:@":"];
+        standardTimeHours = [standardTimeHours stringByAppendingString:[timeComponents objectAtIndex:1]];
+        standardTimeHours = [standardTimeHours stringByAppendingString:@":"];
+        standardTimeHours = [standardTimeHours stringByAppendingString:[timeComponents lastObject]];
+        formattedTime = standardTimeHours;
+    }
+    
+    return formattedTime;
+}
 
 - (void)updateCity:(City *)cityObject andWeather:(WeatherData *)weatherDetails withDetails:(NSArray *)parsedJson inContext:(NSManagedObjectContext *)context
 {
+    [cityObject setValue:[self getFormattedTime:[parsedJson valueForKey:TIME_KEY]] forKey:@"time"];
+    
     // set details for weather
     [weatherDetails setValue:[parsedJson valueForKey:WEATHER_KEY] forKey:@"condition"];
     [weatherDetails setValue:[parsedJson valueForKey:TEMP_KEY] forKey:@"temperatureF"];

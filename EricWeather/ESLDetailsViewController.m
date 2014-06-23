@@ -11,6 +11,7 @@
 @interface ESLDetailsViewController ()
 
 @property (nonatomic, strong) IBOutlet UILabel *cityLabel;
+@property (nonatomic, strong) IBOutlet UILabel *timeLabel;
 @property (nonatomic, strong) IBOutlet UILabel *conditionLabel;
 @property (nonatomic, strong) IBOutlet UILabel *temperatureLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *weatherIcon;
@@ -31,6 +32,7 @@
     
     // set the text for all the labels in the detail view
     self.cityLabel.text = self.city;
+    self.timeLabel.text = self.time;
     self.conditionLabel.text = self.condition;
     self.temperatureLabel.text = self.temperature;
     self.weatherIcon.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.icon]]];
@@ -110,6 +112,7 @@
 - (void)setFont:(UIColor *)fontColor
 {
     self.cityLabel.textColor = fontColor;
+    self.timeLabel.textColor = fontColor;
     self.conditionLabel.textColor = fontColor;
     self.temperatureLabel.textColor = fontColor;
     self.windStringLabel.textColor = fontColor;

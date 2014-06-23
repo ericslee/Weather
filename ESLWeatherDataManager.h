@@ -19,6 +19,7 @@
 #define DISPLAY_LOCATION_KEY @"display_location"
 #define CITY_KEY @"city"
 #define ZIP_KEY @"zip"
+#define TIME_KEY @"local_time_rfc822"
 #define WEATHER_KEY @"weather"
 #define TEMP_KEY @"temp_f"
 #define ICON_KEY @"icon"

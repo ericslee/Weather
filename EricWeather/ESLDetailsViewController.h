@@ -18,6 +18,7 @@
 
 // various details that will be displayed
 @property (nonatomic, strong) NSString *city;
+@property (nonatomic, strong) NSString *time;
 @property (nonatomic, strong) NSString *condition;
 @property (nonatomic, strong) NSString *temperature;
 @property (nonatomic, strong) NSString *icon;

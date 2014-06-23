@@ -115,10 +115,7 @@
     {
         [zipCodesTempArray addObject:city.zipCode];
     }
-    
-    // self.mainModel.citiesArray = [[NSMutableArray alloc] init];
-    //[self.mainModel.citiesArray removeAllObjects];
-    
+        
     // add all cities again with updated data
     for(NSString *city in zipCodesTempArray)
     {
@@ -338,6 +335,10 @@
         NSInteger temperatureInteger = [temperatureString integerValue];
         temperatureLabel.text = [NSString stringWithFormat:@"%ld°", temperatureInteger];
         
+        UILabel *timeLabel = (id)[cell viewWithTag:6];
+        NSString *timeString = currentCity.time;
+        timeLabel.text = timeString;
+        
         UIImageView *conditionImage = (id)[cell viewWithTag:4];
         conditionImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:currentCity.weatherData.icon]]];
         
@@ -371,6 +372,7 @@
     //ESLCityData *currentCity = [self.mainModel.citiesArray objectAtIndex:self.currentIndex];
     City *currentCity = [self.mainModel.citiesArray objectAtIndex:self.currentIndex];
     vc.city = currentCity.cityName;
+    vc.time = currentCity.time;
     vc.condition = currentCity.weatherData.condition;
     NSString *temperatureString = currentCity.weatherData.temperatureF;
     NSInteger temperatureInteger = [temperatureString integerValue];

@@ -2,7 +2,7 @@
 //  City.m
 //  EricWeather
 //
-//  Created by Eric Lee on 6/19/14.
+//  Created by Eric Lee on 6/23/14.
 //  Copyright (c) 2014 EricInc. All rights reserved.
 //
 
@@ -12,6 +12,7 @@
 
 @implementation City
 
+@dynamic time;
 @dynamic cityName;
 @dynamic zipCode;
 @dynamic weatherData;
