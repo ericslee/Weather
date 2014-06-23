@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ESLAppDelegate.h"
+#import "ESLCoreDataManager.h"
 
 // CONSTANTS
 
@@ -34,7 +34,7 @@
 // default initializer that loads S.F. data
 - (id)initDefault;
 
-// add city to model
+// add or update city in model
 - (void)updateModelWithCity:(NSArray *)parsedJson;
 
 // remove swiped city from model

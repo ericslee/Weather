@@ -33,8 +33,8 @@
 - (void)fetchCities
 {
     // get the managed object context
-    ESLAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    ESLCoreDataManager *coreDataManager = [ESLCoreDataManager sharedInstance];
+    NSManagedObjectContext *context = [coreDataManager managedObjectContext];
     
     // create the fetch request
     NSEntityDescription *entityDesc = [NSEntityDescription

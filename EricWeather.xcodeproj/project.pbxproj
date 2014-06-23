@@ -46,6 +46,7 @@
 		48EAC23D1941380C00B0A30A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC21C1941380C00B0A30A /* UIKit.framework */; };
 		48EAC2451941380C00B0A30A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48EAC2431941380C00B0A30A /* InfoPlist.strings */; };
 		48EAC2471941380C00B0A30A /* EricWeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EAC2461941380C00B0A30A /* EricWeatherTests.m */; };
+		48FD093719589F88007F97F9 /* ESLCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FD093619589F88007F97F9 /* ESLCoreDataManager.m */; };
 		D4AA768BF3584DE0B874DFA1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC9A7F56C784C1AB7DA275B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,8 @@
 		48EAC2421941380C00B0A30A /* EricWeatherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EricWeatherTests-Info.plist"; sourceTree = "<group>"; };
 		48EAC2441941380C00B0A30A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		48EAC2461941380C00B0A30A /* EricWeatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EricWeatherTests.m; sourceTree = "<group>"; };
+		48FD093519589F88007F97F9 /* ESLCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLCoreDataManager.h; path = EricWeather/ESLCoreDataManager.h; sourceTree = "<group>"; };
+		48FD093619589F88007F97F9 /* ESLCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESLCoreDataManager.m; path = EricWeather/ESLCoreDataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +187,8 @@
 		48C314CD1947B6B9007B049E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				48FD093519589F88007F97F9 /* ESLCoreDataManager.h */,
+				48FD093619589F88007F97F9 /* ESLCoreDataManager.m */,
 				48C582AB194BB04400FA6D37 /* ESLPersistencyManager.h */,
 				48C582AC194BB04400FA6D37 /* ESLPersistencyManager.m */,
 				48B12422194231CE00835400 /* Reachability.h */,
@@ -445,6 +450,7 @@
 				487751631953739800E9406A /* WeatherData.m in Sources */,
 				48B12424194231CE00835400 /* Reachability.m in Sources */,
 				48EAC2291941380C00B0A30A /* ESLAppDelegate.m in Sources */,
+				48FD093719589F88007F97F9 /* ESLCoreDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
