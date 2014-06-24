@@ -27,4 +27,7 @@
 @property (nonatomic, strong) NSString *feelsLike;
 @property (nonatomic, strong) NSString *weatherEffect;
 
+// used for updating all the arrays at once
+@property (nonatomic, strong) NSMutableArray *labelsArray;
+
 @end

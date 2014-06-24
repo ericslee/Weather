@@ -16,9 +16,6 @@
     if (!_mainModel) {
         _mainModel = [[ESLWeatherDataManager alloc] initDefault];
         
-        // add SF as the default initial city
-        //[self httpRequestWithURL:SFO_URL];
-        
         // load from core data
         [self fetchCities];
     }

@@ -17,6 +17,7 @@
 		488C37181947743700F5BE9C /* ESLDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 488C37171947743700F5BE9C /* ESLDetailsViewController.m */; };
 		488C371E19477EFB00F5BE9C /* Cloudy.sks in Resources */ = {isa = PBXBuildFile; fileRef = 488C371C19477EFB00F5BE9C /* Cloudy.sks */; };
 		488C371F19477EFB00F5BE9C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 488C371D19477EFB00F5BE9C /* spark.png */; };
+		48A031F51959ED52005B34F2 /* ESLConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A031F41959ED52005B34F2 /* ESLConnectionManager.m */; };
 		48B124211942316100835400 /* ESLWebRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B124201942316100835400 /* ESLWebRequestManager.m */; };
 		48B12424194231CE00835400 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B12423194231CE00835400 /* Reachability.m */; };
 		48B124271942321400835400 /* ESLWeatherDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B124261942321400835400 /* ESLWeatherDataManager.m */; };
@@ -29,7 +30,6 @@
 		48C314D1194912D2007B049E /* Cloud01.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314D0194912D2007B049E /* Cloud01.png */; };
 		48C314D3194917FF007B049E /* Cloud02.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314D2194917FF007B049E /* Cloud02.png */; };
 		48C314D519491B4A007B049E /* Cloud03.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C314D419491B4A007B049E /* Cloud03.png */; };
-		48C582AD194BB04400FA6D37 /* ESLPersistencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C582AC194BB04400FA6D37 /* ESLPersistencyManager.m */; };
 		48EAC2191941380C00B0A30A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC2181941380C00B0A30A /* Foundation.framework */; };
 		48EAC21B1941380C00B0A30A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC21A1941380C00B0A30A /* CoreGraphics.framework */; };
 		48EAC21D1941380C00B0A30A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EAC21C1941380C00B0A30A /* UIKit.framework */; };
@@ -76,6 +76,8 @@
 		488C37171947743700F5BE9C /* ESLDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLDetailsViewController.m; sourceTree = "<group>"; };
 		488C371C19477EFB00F5BE9C /* Cloudy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Cloudy.sks; path = ../Cloudy.sks; sourceTree = "<group>"; };
 		488C371D19477EFB00F5BE9C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../spark.png; sourceTree = "<group>"; };
+		48A031F31959ED52005B34F2 /* ESLConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESLConnectionManager.h; sourceTree = "<group>"; };
+		48A031F41959ED52005B34F2 /* ESLConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESLConnectionManager.m; sourceTree = "<group>"; };
 		48B1241F1942316100835400 /* ESLWebRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLWebRequestManager.h; path = EricWeather/ESLWebRequestManager.h; sourceTree = "<group>"; };
 		48B124201942316100835400 /* ESLWebRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESLWebRequestManager.m; path = EricWeather/ESLWebRequestManager.m; sourceTree = "<group>"; };
 		48B12422194231CE00835400 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = EricWeather/Reachability.h; sourceTree = "<group>"; };
@@ -92,8 +94,6 @@
 		48C314D0194912D2007B049E /* Cloud01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud01.png; sourceTree = "<group>"; };
 		48C314D2194917FF007B049E /* Cloud02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud02.png; sourceTree = "<group>"; };
 		48C314D419491B4A007B049E /* Cloud03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud03.png; sourceTree = "<group>"; };
-		48C582AB194BB04400FA6D37 /* ESLPersistencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESLPersistencyManager.h; path = EricWeather/ESLPersistencyManager.h; sourceTree = "<group>"; };
-		48C582AC194BB04400FA6D37 /* ESLPersistencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESLPersistencyManager.m; path = EricWeather/ESLPersistencyManager.m; sourceTree = "<group>"; };
 		48EAC2151941380C00B0A30A /* EricWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EricWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EAC2181941380C00B0A30A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		48EAC21A1941380C00B0A30A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -187,10 +187,10 @@
 		48C314CD1947B6B9007B049E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				48A031F31959ED52005B34F2 /* ESLConnectionManager.h */,
+				48A031F41959ED52005B34F2 /* ESLConnectionManager.m */,
 				48FD093519589F88007F97F9 /* ESLCoreDataManager.h */,
 				48FD093619589F88007F97F9 /* ESLCoreDataManager.m */,
-				48C582AB194BB04400FA6D37 /* ESLPersistencyManager.h */,
-				48C582AC194BB04400FA6D37 /* ESLPersistencyManager.m */,
 				48B12422194231CE00835400 /* Reachability.h */,
 				48B12423194231CE00835400 /* Reachability.m */,
 				48B1241F1942316100835400 /* ESLWebRequestManager.h */,
@@ -444,8 +444,8 @@
 				48C314CC1947B6AD007B049E /* MBProgressHUD.m in Sources */,
 				488C37181947743700F5BE9C /* ESLDetailsViewController.m in Sources */,
 				48B124211942316100835400 /* ESLWebRequestManager.m in Sources */,
-				48C582AD194BB04400FA6D37 /* ESLPersistencyManager.m in Sources */,
 				48EAC2251941380C00B0A30A /* main.m in Sources */,
+				48A031F51959ED52005B34F2 /* ESLConnectionManager.m in Sources */,
 				487751631953739800E9406A /* WeatherData.m in Sources */,
 				48B12424194231CE00835400 /* Reachability.m in Sources */,
 				48EAC2291941380C00B0A30A /* ESLAppDelegate.m in Sources */,
